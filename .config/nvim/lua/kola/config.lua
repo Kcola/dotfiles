@@ -12,4 +12,8 @@ local getProject = function()
 	return folderName
 end
 
-return configs[getProject()] or {}
+return {
+	get = function()
+		return configs[getProject()] or {}
+	end,
+}

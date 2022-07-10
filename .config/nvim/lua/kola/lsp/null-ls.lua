@@ -1,4 +1,4 @@
-local config = require("kola.config") or {}
+local config = require("kola.config").get()
 local augroup = vim.api.nvim_create_augroup("null-ls-autocommands", {})
 
 require("null-ls").setup({

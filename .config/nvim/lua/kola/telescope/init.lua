@@ -1,6 +1,6 @@
 local entry_display = require("telescope.pickers.entry_display")
 
-local config = require("kola.config") or {}
+local config = require("kola.config").get()
 
 local entry_from_quickfix = function(opts)
 	opts = opts or {}

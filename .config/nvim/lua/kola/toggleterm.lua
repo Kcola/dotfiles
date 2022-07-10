@@ -5,7 +5,7 @@ if not status_ok then
 	return
 end
 
-local config = require("kola.config") or {}
+local get_config = require("kola.config").get
 
 local get_package_root = require("kola.utils").get_package_root
 local get_jest_nearest_test = require("kola.utils").get_jest_nearest_test
@@ -104,6 +104,7 @@ function M.vert_toggle()
 end
 
 function M.vert_test()
+	local config = get_config()
 	local current_buffer = vim.fn.expand("%:p")
 	local jest_nearest_test = get_jest_nearest_test()
 	vert:change_dir(get_package_root())
@@ -113,6 +114,7 @@ function M.vert_test()
 end
 
 function M.vert_e2e_test()
+	local config = get_config()
 	vert:send("cd " .. get_package_root())
 	local current_buffer = vim.fn.expand("%:p")
 	local env = config.playwright or {}
