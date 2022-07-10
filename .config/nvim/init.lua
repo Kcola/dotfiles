@@ -1,3 +1,7 @@
+-- personal json config path
+CONFIG_PATH = "$HOME/.config/nvim/settings.json"
+
+require("kola.globals")
 require("kola.plugins")
 require("kola.options")
 require("kola.keymaps")
@@ -12,6 +16,5 @@ require("kola.gitsigns")
 require("kola.diffview")
 require("kola.lsp")
 require("kola.cmp")
-require("colorizer").setup()
 require("kola.lualine")
 require("kola.dap")
