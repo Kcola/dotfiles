@@ -57,9 +57,6 @@ end
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 local Terminal = require("toggleterm.terminal").Terminal
-local jester = require("jester")
-
-jester.setup({ cmd = "node --inspect $PPUX_BUILD/bin/ppux-test --runInBand -t $file" })
 
 local M = {}
 
@@ -84,13 +81,9 @@ end
 
 local vert = Terminal:new({ direction = "vertical", hidden = true })
 
--- open terminal in the background on startup
--- vert:open()
--- vert:close()
-
 local try_close_vert = function()
 	if vert:is_open() then
-		vert:toggle()
+		vert:close()
 	end
 end
 
@@ -106,8 +99,20 @@ end
 function M.vert_test()
 	local current_buffer = vim.fn.expand("%:p")
 	local jest_nearest_test = get_jest_nearest_test()
-	vert:change_dir(get_package_root())
-	vert:send((config.jest or "jest ") .. jest_nearest_test .. "' -- " .. current_buffer)
+	local package_root = get_package_root()
+
+	if not jest_nearest_test then
+		return
+	end
+
+	vert:change_dir(package_root)
+
+	vert:send(
+		(config.jest or "node --inspect (npm root)/jest/bin/jest.js -- -t '")
+			.. jest_nearest_test
+			.. "' -- "
+			.. current_buffer
+	)
 	require("dap").terminate()
 	require("kola.dap.node").attach()
 end
