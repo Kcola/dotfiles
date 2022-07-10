@@ -1,0 +1,5 @@
+require("nvim-lsp-installer").setup({})
+require("kola.lsp.null-ls")
+require("kola.lsp.jsonls")
+require("kola.lsp.tsserver")
+require("kola.lsp.sumneko")

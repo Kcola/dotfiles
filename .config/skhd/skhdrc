@@ -1,0 +1,18 @@
+# Navigation
+alt - h : yabai -m window --focus stack.prev; yabai -m window --focus prev
+alt - l : yabai -m window --focus stack.next; yabai -m window --focus next
+alt - s : yabai -m space --layout (yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')
+
+# Restart Yabai
+shift + lctrl + alt - r : \
+    /usr/bin/env osascript <<< \
+        "display notification \"Restarting Yabai\" with title \"Yabai\""; \
+    launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
+# Make window native fullscreen
+alt - f         : yabai -m window --toggle zoom-fullscreen
+shift + alt - f : yabai -m window --toggle native-fullscreen
+
+# move window
+alt + shift - h : set WIN_ID (yabai -m query --windows --window | jq '.id') &&  yabai -m window --space prev && yabai -m window --focus $WIN_ID
+alt + shift - l : set WIN_ID (yabai -m query --windows --window | jq '.id') && yabai -m window --space next && yabai -m window --focus $WIN_ID
