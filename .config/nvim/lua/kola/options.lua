@@ -36,6 +36,8 @@ vim.opt.hidden = true
 vim.opt.shortmess:append("c")
 vim.opt.laststatus = 3
 
+vim.cmd("let g:tablineclosebutton=1")
+
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set noequalalways]])
