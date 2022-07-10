@@ -5,7 +5,7 @@ if not status_ok then
 	return
 end
 
-local getConfig = require("kola.config").getConfig
+local config = require("kola.config") or {}
 
 local get_package_root = require("kola.utils").get_package_root
 local get_jest_nearest_test = require("kola.utils").get_jest_nearest_test
@@ -85,8 +85,8 @@ end
 local vert = Terminal:new({ direction = "vertical", hidden = true })
 
 -- open terminal in the background on startup
-vert:open()
-vert:close()
+-- vert:open()
+-- vert:close()
 
 local try_close_vert = function()
 	if vert:is_open() then
@@ -107,7 +107,7 @@ function M.vert_test()
 	local current_buffer = vim.fn.expand("%:p")
 	local jest_nearest_test = get_jest_nearest_test()
 	vert:change_dir(get_package_root())
-	vert:send(getConfig().jest.cmd(current_buffer, jest_nearest_test))
+	vert:send((config.jest or "jest ") .. jest_nearest_test .. "' -- " .. current_buffer)
 	require("dap").terminate()
 	require("kola.dap.node").attach()
 end
@@ -115,7 +115,7 @@ end
 function M.vert_e2e_test()
 	vert:send("cd " .. get_package_root())
 	local current_buffer = vim.fn.expand("%:p")
-	local env = getConfig().playwright
+	local env = config.playwright or {}
 
 	local set_env_string = ""
 	for key, value in pairs(env) do

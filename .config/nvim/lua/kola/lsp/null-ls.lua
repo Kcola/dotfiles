@@ -1,4 +1,4 @@
-local get_eslint_config = require("kola.config").getConfig().eslint
+local config = require("kola.config") or {}
 local augroup = vim.api.nvim_create_augroup("null-ls-autocommands", {})
 
 require("null-ls").setup({
@@ -18,14 +18,17 @@ require("null-ls").setup({
 	end,
 	sources = {
 		require("null-ls").builtins.formatting.eslint_d.with({
-			extra_args = get_eslint_config(),
+			extra_args = config.eslint,
 		}),
 		require("null-ls").builtins.diagnostics.eslint_d.with({
-			extra_args = get_eslint_config(),
+			extra_args = config.eslint,
 		}),
 		require("null-ls").builtins.code_actions.eslint_d.with({
-			extra_args = get_eslint_config(),
+			extra_args = config.eslint,
 		}),
 		require("null-ls").builtins.formatting.stylua,
+		require("null-ls").builtins.formatting.prettierd.with({
+			filetypes = { "json" },
+		}),
 	},
 })

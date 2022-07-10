@@ -51,7 +51,7 @@ vim.ui.select = function(_items, opts, on_choice)
 	local low_priority_items = {}
 
 	for idx, item in ipairs(_items) do
-		local low_priority = string.find(string.lower(item[2].title), "disable")
+		local low_priority = string.find(string.lower((item[2] or {}).title or "") or "", "disable")
 
 		if low_priority then
 			table.insert(low_priority_items, item)

@@ -1,6 +1,6 @@
 local entry_display = require("telescope.pickers.entry_display")
 
-local getSerchDirs = require("kola.config").getConfig().telescope
+local config = require("kola.config") or {}
 
 local entry_from_quickfix = function(opts)
 	opts = opts or {}
@@ -57,7 +57,7 @@ require("telescope").setup({
 	},
 	pickers = {
 		live_grep = {
-			search_dirs = getSerchDirs(),
+			search_dirs = config.telescope,
 			mappings = {
 				i = {
 					["<c-p>"] = function()
@@ -67,7 +67,7 @@ require("telescope").setup({
 			},
 		},
 		grep_string = {
-			search_dirs = getSerchDirs(),
+			search_dirs = config.telescope,
 		},
 		git_branches = {
 			layout_strategy = "center",
@@ -108,7 +108,7 @@ end
 
 _G.custom_find_files = function()
 	require("telescope.builtin").find_files({
-		search_dirs = getSerchDirs(),
+		search_dirs = config.telescope,
 	})
 end
 

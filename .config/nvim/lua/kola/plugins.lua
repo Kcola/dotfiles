@@ -2,10 +2,21 @@ return require("packer").startup(function(use)
 	-- My plugins here
 	use("wbthomason/packer.nvim")
 	use("nvim-lua/plenary.nvim")
-	use({ "norcalli/nvim-colorizer.lua" })
+	use({
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	})
+	use({
+		"goolord/alpha-nvim",
+		requires = { "kyazdani42/nvim-web-devicons" },
+		config = function()
+			require("alpha").setup(require("alpha.themes.startify").config)
+		end,
+	})
 
 	-- LSP
-	--use { 'neoclide/coc.nvim', branch = 'release' }
 	use({
 		"williamboman/nvim-lsp-installer",
 		"neovim/nvim-lspconfig",
@@ -33,9 +44,7 @@ return require("packer").startup(function(use)
 
 	-- Git
 	use("tpope/vim-fugitive")
-	use("tpope/vim-rhubarb")
 	use("lewis6991/gitsigns.nvim")
-	use({ "junegunn/gv.vim" })
 
 	-- Nav
 	use("nvim-telescope/telescope.nvim")
@@ -43,7 +52,6 @@ return require("packer").startup(function(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("kyazdani42/nvim-tree.lua")
 	use("akinsho/bufferline.nvim")
-	use("fannheyward/telescope-coc.nvim")
 	use("karb94/neoscroll.nvim")
 
 	-- Colorschemes
@@ -58,10 +66,4 @@ return require("packer").startup(function(use)
 	-- Comments
 	use("numToStr/Comment.nvim")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
-
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
 end)
