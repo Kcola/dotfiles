@@ -66,6 +66,9 @@ require("telescope").setup({
 				},
 			},
 		},
+		buffers = {
+			file_ignore_patterns = {},
+		},
 		grep_string = {
 			search_dirs = config.telescope,
 		},
@@ -120,5 +123,5 @@ map("n", "<c-p>", ":lua _G.custom_find_files()<cr>", opts)
 map("n", "<leader>F", "<cmd>Telescope git_files<cr>", opts)
 map("n", "<leader>gb", "<cmd>lua require('kola.telescope.custom_builtins').git_branches()<CR>", opts)
 map("n", "<leader>ff", "<cmd>Telescope live_grep<cr>", opts)
-map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
+map("n", "<c-b>", "<cmd>Telescope buffers<cr>", opts)
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
