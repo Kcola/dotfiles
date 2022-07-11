@@ -6,6 +6,11 @@ require("diffview").setup({
 		file_panel = {
 			q = "<Cmd>DiffviewClose<CR>",
 			s = cb("toggle_stage_entry"),
+			o = function()
+				local goto_file = cb("goto_file")
+				goto_file()
+				vim.fn.feedkeys("zR")
+			end,
 			["<cr>"] = function()
 				local goto_file = cb("goto_file")
 				goto_file()
