@@ -31,6 +31,7 @@ local colors = {
 }
 -- Config
 local config = {
+	globalstauts = true,
 	sections = {
 		-- these are to remove the defaults
 		lualine_b = {},
