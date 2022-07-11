@@ -22,6 +22,15 @@ local checkout = function(prompt_bufnr)
 	vim.cmd("G checkout " .. branch)
 end
 
+local delete_branch = function(prompt_bufnr)
+	local selection = action_state.get_selected_entry()
+	local confirmation = vim.fn.confirm("Delete " .. selection.name, "&Yes\n&No")
+	if confirmation == 1 then
+		vim.cmd("G branch -D " .. selection.value)
+		require("kola.telescope.custom_builtins").git_branches()
+	end
+end
+
 local M = {}
 
 M.git_branches = function()
@@ -126,7 +135,7 @@ M.git_branches = function()
 			map("i", "<c-s>", actions.git_switch_branch)
 			map("n", "<c-s>", actions.git_switch_branch)
 
-			map("i", "<c-d>", actions.git_delete_branch)
+			map("i", "<c-d>", delete_branch)
 			map("n", "<c-d>", actions.git_delete_branch)
 
 			map("i", "<c-y>", actions.git_merge_branch)

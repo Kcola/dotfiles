@@ -19,8 +19,9 @@ lspconfig.tsserver.setup({
 			filter_out_diagnostics_by_severity = {},
 			filter_out_diagnostics_by_code = {},
 			-- update imports on file move
-			update_imports_on_move = true,
+			update_imports_on_move = false,
 			require_confirmation_on_move = true,
+			always_organize_imports = false,
 		})
 
 		-- required to fix code action ranges and filter diagnostics
