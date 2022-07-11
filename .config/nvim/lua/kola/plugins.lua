@@ -53,6 +53,7 @@ return require("packer").startup(function(use)
 	use("kyazdani42/nvim-tree.lua")
 	use("akinsho/bufferline.nvim")
 	use("karb94/neoscroll.nvim")
+	use("mkitt/tabline.vim")
 
 	-- Colorschemes
 	use("morhetz/gruvbox")
