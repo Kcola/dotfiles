@@ -56,3 +56,6 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.keymap.set("n", "<F12>", require("kola.toggleterm").vert_toggle)
 vim.keymap.set("n", "<leader>J", require("kola.toggleterm").vert_test)
 vim.keymap.set("n", "<leader>E2E", require("kola.toggleterm").vert_e2e_test)
+vim.keymap.set("n", "<leader>r", function()
+	vim.cmd("luafile %")
+end)
