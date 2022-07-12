@@ -2,7 +2,6 @@
 local cb = require("diffview.config").diffview_callback
 local lazy = require("diffview.lazy")
 local lib = lazy.require("diffview.lib")
-local telescope = require("telescope.builtin")
 
 local goto_file = function()
 	cb("goto_file")()
