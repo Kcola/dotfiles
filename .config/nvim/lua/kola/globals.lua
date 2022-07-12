@@ -1,8 +1,12 @@
 P = function(value)
 	print(vim.inspect(value))
+	return value
 end
 
 JSON_PARSE = function(filename)
-	local dir = vim.fn.expand("%:p:h")
-	vim.fn.json_decode(vim.fn.readfile(dir .. "/" .. filename))
+	vim.fn.json_decode(vim.fn.readfile(filename))
+end
+
+NOOP = function()
+	return {}
 end

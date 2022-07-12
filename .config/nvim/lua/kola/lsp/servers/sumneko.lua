@@ -1,4 +1,4 @@
-local set_keymaps = require("kola.lsp.config").set_keymaps
+local set_keymaps = require("kola.lsp.keymaps").set_keymaps
 local capabilities = require("kola.lsp.config").get_capabilities()
 local register_autocommands = require("kola.lsp.config").register_autocommands
 
@@ -6,7 +6,7 @@ require("lspconfig").sumneko_lua.setup({
 	settings = {
 		Lua = {
 			diagnostics = {
-				globals = { "vim" },
+				globals = { "vim", "CONFIG_PATH", "P", "NOOP" },
 			},
 			workspace = {
 				library = {

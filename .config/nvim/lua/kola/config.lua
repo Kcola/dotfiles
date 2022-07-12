@@ -3,7 +3,9 @@ local configs_found, configs = pcall(function()
 end)
 
 if not configs_found then
-	return {}
+	return {
+		get = NOOP,
+	}
 end
 
 local getProject = function()
