@@ -54,7 +54,7 @@ end
 local extended_schemas = extend(schemas, default_schemas)
 
 local lspconfig = require("lspconfig")
-local set_keymaps = require("kola.lsp.config").set_keymaps
+local set_keymaps = require("kola.lsp.keymaps").set_keymaps
 local capabilities = require("kola.lsp.config").get_capabilities()
 
 lspconfig.jsonls.setup({

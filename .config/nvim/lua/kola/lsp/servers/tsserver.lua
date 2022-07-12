@@ -1,5 +1,5 @@
 local lspconfig = require("lspconfig")
-local set_keymaps = require("kola.lsp.config").set_keymaps
+local set_keymaps = require("kola.lsp.keymaps").set_keymaps
 local register_autocommands = require("kola.lsp.config").register_autocommands
 local capabilities = require("kola.lsp.config").get_capabilities()
 
@@ -12,6 +12,7 @@ lspconfig.tsserver.setup({
 	},
 	capabilities = capabilities,
 	on_attach = function(client)
+		P(client.handlers)
 		local ts_utils = require("nvim-lsp-ts-utils")
 
 		ts_utils.setup({
