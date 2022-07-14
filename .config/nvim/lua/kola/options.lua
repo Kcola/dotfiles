@@ -60,3 +60,7 @@ vim.cmd(":autocmd FileType qf nnoremap <buffer> <Tab> <CR>:Cnext<CR><C-W><C-P>")
 vim.cmd(":autocmd FileType qf nnoremap <buffer> <S Tab> <CR>:Cprev<CR><C-W><C-P>")
 
 require("neoscroll").setup()
+require("leap").set_default_keymaps(true)
+require("alpha").setup(require("alpha.themes.startify").config)
+
+vim.api.nvim_create_user_command("TD", "Telescope diagnostics", {})
