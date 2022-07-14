@@ -20,7 +20,3 @@ local load_changed_files_into_memory = function()
 		end)
 	end
 end
-
-vim.api.nvim_create_autocmd("VimEnter", {
-	callback = load_changed_files_into_memory,
-})
