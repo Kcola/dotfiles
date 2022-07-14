@@ -8,13 +8,7 @@ return require("packer").startup(function(use)
 			require("colorizer").setup()
 		end,
 	})
-	use({
-		"goolord/alpha-nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
-		config = function()
-			require("alpha").setup(require("alpha.themes.startify").config)
-		end,
-	})
+	use("goolord/alpha-nvim")
 
 	-- LSP
 	use({
@@ -54,6 +48,17 @@ return require("packer").startup(function(use)
 	use("akinsho/bufferline.nvim")
 	use("karb94/neoscroll.nvim")
 	use("mkitt/tabline.vim")
+	use({
+		"ThePrimeagen/harpoon",
+		config = function()
+			require("harpoon").setup({
+				menu = {
+					width = vim.api.nvim_win_get_width(0) - 4,
+				},
+			})
+		end,
+	})
+	use("ggandor/leap.nvim")
 
 	-- Colorschemes
 	use("morhetz/gruvbox")
