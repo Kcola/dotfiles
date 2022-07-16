@@ -64,3 +64,4 @@ require("leap").set_default_keymaps(true)
 require("alpha").setup(require("alpha.themes.startify").config)
 
 vim.api.nvim_create_user_command("TD", "Telescope diagnostics", {})
+require("harpoon").setup({ menu = { width = vim.api.nvim_win_get_width(0) - 70 } })

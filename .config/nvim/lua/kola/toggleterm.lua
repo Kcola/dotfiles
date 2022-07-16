@@ -5,6 +5,8 @@ if not status_ok then
 	return
 end
 
+local vertical_width = vim.o.columns * 0.35
+
 local get_config = require("kola.config").get
 
 local get_package_root = require("kola.utils").get_package_root
@@ -13,7 +15,7 @@ local get_jest_nearest_test = require("kola.utils").get_jest_nearest_test
 toggleterm.setup({
 	size = function(term)
 		if term.direction == "vertical" then
-			return 80
+			return vertical_width
 		elseif term.direction == "horizontal" then
 			return 15
 		end
@@ -79,7 +81,10 @@ function M._LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
 
-local vert = Terminal:new({ direction = "vertical", hidden = true })
+local vert = Terminal:new({
+	direction = "vertical",
+	hidden = true,
+})
 
 local try_close_vert = function()
 	if vert:is_open() then
@@ -92,8 +97,7 @@ vim.api.nvim_create_autocmd("BufDelete", {
 })
 
 function M.vert_toggle()
-	vert:toggle()
-	vert:resize(80)
+	vert:toggle(vertical_width)
 end
 
 function M.vert_test()
