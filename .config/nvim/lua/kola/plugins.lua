@@ -39,9 +39,10 @@ return require("packer").startup(function(use)
 	-- Git
 	use("tpope/vim-fugitive")
 	use("lewis6991/gitsigns.nvim")
+	use("rhysd/git-messenger.vim")
 
 	-- Nav
-	use("nvim-telescope/telescope.nvim")
+	use({ "nvim-telescope/telescope.nvim", tag = "0.1.0" })
 	use("nvim-telescope/telescope-fzy-native.nvim")
 	use("kyazdani42/nvim-web-devicons")
 	use("kyazdani42/nvim-tree.lua")
@@ -50,13 +51,6 @@ return require("packer").startup(function(use)
 	use("mkitt/tabline.vim")
 	use({
 		"ThePrimeagen/harpoon",
-		config = function()
-			require("harpoon").setup({
-				menu = {
-					width = vim.api.nvim_win_get_width(0) - 4,
-				},
-			})
-		end,
 	})
 	use("ggandor/leap.nvim")
 

@@ -27,6 +27,9 @@ map("n", "N", "Nzzzv", opts)
 map("n", "H", ":bp<CR>", opts)
 map("n", "<C-W>", ":%bd!|e#<CR>", opts)
 map("n", "<leader>t", ":NvimTreeToggle<CR>", opts)
+vim.keymap.set("n", "<leader>comma", require("harpoon.mark").add_file)
+vim.keymap.set("n", "]h", require("harpoon.ui").nav_next)
+vim.keymap.set("n", "[h", require("harpoon.ui").nav_prev)
 
 -- Resize with arrows
 map("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -35,10 +38,7 @@ map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Git
--- map("n", "gs", ":vertical Git<CR><C-W>H:vertical resize 100<CR>", opts)
--- map("n", "gs", "<cmd>lua require('kola._toggleterm')._LAZYGIT_TOGGLE()<CR>", opts)
--- map("n", "gs", "<cmd>Telescope git_status<CR>", opts)
-map("n", "gs", "<cmd>DiffviewOpen<CR> <cmd>lua require('kola.nvimtree').resizeToFit()<CR>", opts)
+vim.keymap.set("n", "gs", require("kola.diffview").open)
 map("n", "<leader>gh", ":diffget //3<CR>", opts)
 map("n", "<leader>gf", ":diffget //2<CR>", opts)
 map("n", "<leader>h", "<cmd>DiffviewFileHistory %<cr>", opts)

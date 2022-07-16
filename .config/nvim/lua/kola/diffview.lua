@@ -15,6 +15,15 @@ local goto_file_and_close = function()
 	vim.fn.feedkeys("zR")
 end
 
+local open = function()
+	local file_location = vim.fn.expand("%")
+	if file_location:find(".config") then
+		vim.env.GIT_WORK_TREE = vim.fn.expand("~")
+		vim.env.GIT_DIR = vim.fn.expand("$HOME/.local/share/yadm/repo.git")
+	end
+	vim.cmd("DiffviewOpen")
+end
+
 local load_files_into_buffer = function()
 	for _, filetree in pairs(lib.get_current_view().files) do
 		for _, value in ipairs(filetree) do
@@ -37,6 +46,12 @@ require("diffview").setup({
 		},
 		view = { q = "<Cmd>DiffviewClose<CR>" },
 	},
+	hooks = {
+		view_closed = function()
+			vim.env.GIT_WORK_TREE = nil
+			vim.env.GIT_DIR = nil
+		end,
+	},
 })
 
 function string:firstword()
@@ -50,4 +65,5 @@ end
 
 return {
 	view_commit = view_commit,
+	open = open,
 }

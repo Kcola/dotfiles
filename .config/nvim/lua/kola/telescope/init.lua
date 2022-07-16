@@ -101,6 +101,7 @@ require("telescope").setup({
 })
 
 require("telescope").load_extension("fzy_native")
+require("telescope").load_extension("harpoon")
 
 local search_vim_config = function()
 	require("telescope.builtin").find_files({
@@ -125,4 +126,5 @@ map("n", "<leader>F", "<cmd>Telescope git_files<cr>", opts)
 map("n", "<leader>ff", "<cmd>Telescope live_grep<cr>", opts)
 map("n", "<c-b>", "<cmd>Telescope buffers<cr>", opts)
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
-map("n", "<c-d>", "<cmd>Telescope diagnostics<cr>", opts)
+map("n", "<leader>diag", "<cmd>Telescope diagnostics<cr>", opts)
+map("n", "<leader>m", "<cmd>Telescope harpoon marks<cr>", opts)
