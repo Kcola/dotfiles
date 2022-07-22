@@ -27,6 +27,7 @@ require("null-ls").setup({
 			extra_args = config.eslint,
 		}),
 		require("null-ls").builtins.formatting.stylua,
+		require("null-ls").builtins.formatting.csharpier,
 		require("null-ls").builtins.formatting.prettierd.with({
 			filetypes = { "json" },
 		}),
