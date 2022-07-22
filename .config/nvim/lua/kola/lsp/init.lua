@@ -3,6 +3,7 @@ require("kola.lsp.servers.null-ls")
 require("kola.lsp.servers.jsonls")
 require("kola.lsp.servers.tsserver")
 require("kola.lsp.servers.sumneko")
+require("kola.lsp.servers.omnisharp")
 require("kola.lsp.handlers")
 
 local load_changed_files_into_memory = function()

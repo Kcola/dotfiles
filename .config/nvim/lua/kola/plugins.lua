@@ -31,6 +31,7 @@ return require("packer").startup(function(use)
 	use({ "rcarriga/nvim-dap-ui" })
 	use({ "Pocco81/DAPInstall.nvim" })
 	use("David-Kunz/jester")
+	use("Hoffs/omnisharp-extended-lsp.nvim")
 
 	--Terminal
 	use("akinsho/toggleterm.nvim")
