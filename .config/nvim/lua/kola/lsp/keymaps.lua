@@ -6,7 +6,11 @@ local set_keymaps = function()
 		vim.lsp.buf.hover()
 		vim.api.nvim_command('autocmd CursorMoved <buffer> ++once set eventignore=""')
 	end, { buffer = 0 })
-	vim.keymap.set("n", "gd", telescope.lsp_definitions, { buffer = 0 })
+	if vim.bo.filetype == "cs" then
+		vim.keymap.set("n", "gd", require("omnisharp_extended").telescope_lsp_definitions, { buffer = 0 })
+	else
+		vim.keymap.set("n", "gd", telescope.lsp_definitions, { buffer = 0 })
+	end
 	vim.keymap.set("n", "gt", telescope.lsp_type_definitions, { buffer = 0 })
 	vim.keymap.set("n", "gi", telescope.lsp_implementations, { buffer = 0 })
 	vim.keymap.set("n", "gr", telescope.lsp_references, { buffer = 0 })
