@@ -3,7 +3,6 @@ require("kola.dap.node")
 require("dapui").setup()
 require("nvim-dap-virtual-text").setup()
 local dap = require("dap")
-local dapui = require("dapui")
 vim.g.dap_virtual_text = true
 
 vim.keymap.set("n", "<F5>", require("kola.dap.node").attach)
