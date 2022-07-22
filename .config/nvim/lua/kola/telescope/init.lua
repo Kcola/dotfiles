@@ -68,6 +68,14 @@ require("telescope").setup({
 		},
 		buffers = {
 			file_ignore_patterns = {},
+			mappings = {
+				n = {
+					["<c-d>"] = "delete_buffer",
+				},
+				i = {
+					["<c-d>"] = "delete_buffer",
+				},
+			},
 		},
 		grep_string = {
 			search_dirs = config.telescope,
