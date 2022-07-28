@@ -12,7 +12,6 @@ lspconfig.tsserver.setup({
 	},
 	capabilities = capabilities,
 	on_attach = function(client)
-		P(client.handlers)
 		local ts_utils = require("nvim-lsp-ts-utils")
 
 		ts_utils.setup({
