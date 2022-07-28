@@ -30,6 +30,12 @@ map("n", "<leader>t", ":NvimTreeToggle<CR>", opts)
 vim.keymap.set("n", "<leader>comma", require("harpoon.mark").add_file)
 vim.keymap.set("n", "]h", require("harpoon.ui").nav_next)
 vim.keymap.set("n", "[h", require("harpoon.ui").nav_prev)
+vim.keymap.set("n", "q", function()
+	local tabNumber = vim.fn.tabpagenr()
+	if tabNumber > 1 then
+		vim.cmd("tabclose")
+	end
+end)
 
 -- Resize with arrows
 map("n", "<C-Up>", ":resize -2<CR>", opts)

@@ -35,16 +35,13 @@ end
 
 require("diffview").setup({
 	key_bindings = {
-		file_history_panel = { q = "<Cmd>DiffviewClose<CR>" },
 		file_panel = {
-			q = "<Cmd>DiffviewClose<CR>",
 			["<c-d>"] = load_files_into_buffer,
 			s = cb("toggle_stage_entry"),
 			o = goto_file,
 			["<cr>"] = goto_file_and_close,
 			["cc"] = "<Cmd>botright Git commit<CR>",
 		},
-		view = { q = "<Cmd>DiffviewClose<CR>" },
 	},
 	hooks = {
 		view_closed = function()
