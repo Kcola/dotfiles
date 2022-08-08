@@ -1,0 +1,20 @@
+let mapleader = " "
+set relativenumber
+set visualbell
+set noerrorbells
+set number
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+noremap <leader>p viw"0p
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+set incsearch
+nmap H <action>(PreviousTab)
+nmap L <action>(NextTab)
+nmap ]g <action>(GotoNextError)
+nmap [g <action>(GotoPreviousError)
+nmap gr <action>(ShowUsages)
