@@ -1,5 +1,4 @@
 let mapleader = " "
-set relativenumber
 set visualbell
 set noerrorbells
 set number
@@ -13,8 +12,17 @@ inoremap <Down> <Nop>
 inoremap <Left> <Nop>
 inoremap <Right> <Nop>
 set incsearch
+
+" keymaps
 nmap H <action>(PreviousTab)
 nmap L <action>(NextTab)
 nmap ]g <action>(GotoNextError)
 nmap [g <action>(GotoPreviousError)
 nmap gr <action>(ShowUsages)
+nmap <C-p> <action>(GotoFile)
+
+" NERDTree
+set NERDTree
+let g:NERDTreeMapOpenInTab='\t'
+let g:NERDTreeMapQuit = '<leader>t'
+nmap <leader>t :NERDTreeToggle<CR>
