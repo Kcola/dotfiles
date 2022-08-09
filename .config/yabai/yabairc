@@ -17,13 +17,13 @@ yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
 yabai -m rule --add app="^licecap$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Chromium$" space=1 sticky=on layer=above manage=off
+yabai -m rule --add app="^JetBrains Rider$" sticky=on layer=above manage=off
+yabai -m rule --add app="^WebStorm$" sticky=on layer=above manage=off
 
-# float all JetBrains apps
-apps='^(IntelliJ IDEA|WebStorm|CLion|JetBrains Rider)$'
-yabai -m rule --add app="${apps}" manage=on
+# float jetbrain app subwindows
+yabai -m rule --add app="^JetBrains Rider$" title="(.*\[(.*)].*)|(^$)" manage=on
+yabai -m rule --add app="^WebStorm$" title="(.*\[(.*)].*)|(^$)" manage=on
 
-# add a signal that floats a window created by these apps when it's the only window
-yabai -m signal --add event=window_created app="${apps}" action='~/bashscripts/yabai/ignore-app-sub-windows.sh'
 
 # New window spawns to the left if vertical split, or top if horizontal split
 yabai -m config window_placement first_child
