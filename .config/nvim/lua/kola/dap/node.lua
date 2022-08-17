@@ -4,7 +4,7 @@ dap.adapters.node2 = {
 	type = "executable",
 	command = "node",
 	args = {
-		os.getenv("HOME") .. "/apps/vscode-node-debug2/out/src/nodeDebug.js",
+		"~/Tools/vscode-node-debug2/out/src/nodeDebug.js",
 	},
 }
 
