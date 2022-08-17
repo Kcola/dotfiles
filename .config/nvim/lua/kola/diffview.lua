@@ -19,7 +19,7 @@ local open = function()
 	local file_location = vim.fn.expand("%")
 	if file_location:find(".config") then
 		vim.env.GIT_WORK_TREE = vim.fn.expand("~")
-		vim.env.GIT_DIR = vim.fn.expand("$HOME/.local/share/yadm/repo.git")
+		vim.env.GIT_DIR = vim.fn.expand("~/dotfiles/")
 	end
 	vim.cmd("DiffviewOpen")
 end
