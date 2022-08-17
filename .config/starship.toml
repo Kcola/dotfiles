@@ -6,8 +6,7 @@ $git_branch\
 $git_status\
 [](fg:#608B4E bg:#608B4E)\
 [ ](fg:#608B4E)
-$character
-"""
+$character"""
 
 [character] # The name of the module we are configuring is "character"
 success_symbol = "[\\$](bold green)" 

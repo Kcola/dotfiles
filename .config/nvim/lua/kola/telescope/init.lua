@@ -114,7 +114,7 @@ require("telescope").load_extension("harpoon")
 local search_vim_config = function()
 	require("telescope.builtin").find_files({
 		prompt_title = "<VimRc >",
-		cwd = "~/.config",
+		cwd = "~/AppData/Local/nvim",
 	})
 end
 
