@@ -47,7 +47,7 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 vim.keymap.set("n", "gs", require("kola.diffview").open)
 map("n", "<leader>gh", ":diffget //3<CR>", opts)
 map("n", "<leader>gf", ":diffget //2<CR>", opts)
-map("n", "<leader>h", "<cmd>DiffviewFileHistory %<cr>", opts)
+map("n", "<leader>history", "<cmd>DiffviewFileHistory %<cr>", opts)
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "git",

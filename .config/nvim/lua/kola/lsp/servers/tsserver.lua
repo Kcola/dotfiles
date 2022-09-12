@@ -5,7 +5,7 @@ local capabilities = require("kola.lsp.config").get_capabilities()
 
 lspconfig.tsserver.setup({
 	cmd = {
-		"typescript-language-server",
+		"typescript-language-server.cmd",
 		"--stdio",
 		"--tsserver-path",
 		"/Users/kolacampell/.nvm/versions/node/v14.17.4/lib/node_modules/typescript/lib/",
