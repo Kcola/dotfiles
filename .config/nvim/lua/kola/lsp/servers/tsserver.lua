@@ -3,6 +3,8 @@ local set_keymaps = require("kola.lsp.keymaps").set_keymaps
 local register_autocommands = require("kola.lsp.config").register_autocommands
 local capabilities = require("kola.lsp.config").get_capabilities()
 
+local augroup = vim.api.nvim_create_augroup("tsserver-autocommands", { clear = true })
+
 lspconfig.tsserver.setup({
 	cmd = {
 		"typescript-language-server.cmd",
@@ -37,5 +39,28 @@ lspconfig.tsserver.setup({
 		map("n", "<leader>gi", ":TSLspImportAll<CR>", opts)
 		set_keymaps()
 		register_autocommands()
+
+		---ts auto commands
+		vim.api.nvim_create_autocmd("BufWritePost", {
+			group = augroup,
+			pattern = "*.ts",
+			buffer = bufnr,
+			callback = function()
+				local config = require("kola.config").get()
+				if config.enableTypescriptCompiler then
+					vim.fn.jobstart({ "tsc", "-p", vim.fn.expand("%:p:h") }, {
+						strdout_buffered = true,
+						on_stdout = function(_, data)
+							P("Compiled " .. vim.fn.expand("%"))
+						end,
+						on_stderr = function(_, data)
+							if next(data) ~= nill and data[1] ~= "" then
+								P(data)
+							end
+						end,
+					})
+				end
+			end,
+		})
 	end,
 })
