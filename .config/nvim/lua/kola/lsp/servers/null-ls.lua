@@ -17,14 +17,14 @@ require("null-ls").setup({
 		end
 	end,
 	sources = {
-		config.eslint.enableAutoFix and require("null-ls").builtins.formatting.eslint_d.with({
-			extra_args = config.eslint.args,
+		(config.eslint or {}).enableAutoFix and require("null-ls").builtins.formatting.eslint_d.with({
+			extra_args = (config.eslint or {}).args,
 		}) or nil,
 		require("null-ls").builtins.diagnostics.eslint_d.with({
-			extra_args = config.eslint.args,
+			extra_args = (config.eslint or {}).args,
 		}),
 		require("null-ls").builtins.code_actions.eslint_d.with({
-			extra_args = config.eslint.args,
+			extra_args = (config.eslint or {}).args,
 		}),
 		require("null-ls").builtins.formatting.stylua,
 		require("null-ls").builtins.formatting.csharpier,
