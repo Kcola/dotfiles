@@ -35,12 +35,14 @@ vim.opt.guifont = "monospace:h17" -- shell
 vim.opt.hidden = true
 vim.opt.shortmess:append("c")
 vim.opt.laststatus = 3
+vim.opt.shell = 'C:\\Users\\kolacampbell\\Repo\\scripts\\devpwsh.cmd'
 
 vim.cmd("let g:tablineclosebutton=1")
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set noequalalways]])
+vim.cmd([[set ffs=unix,dos]])
 
 -- vim.g.gruvbox_contrast_dark = "hard"
 vim.cmd([[colorscheme codedark]])

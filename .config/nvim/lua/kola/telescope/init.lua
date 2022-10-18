@@ -46,7 +46,6 @@ end
 
 require("telescope").setup({
 	defaults = {
-		file_sorter = require("telescope.sorters").get_fzy_sorter,
 		file_ignore_patterns = { "node_modules", "lib" },
 		prompt_prefix = " >",
 		color_devicons = true,
@@ -100,15 +99,8 @@ require("telescope").setup({
 			entry_maker = entry_from_quickfix(),
 		},
 	},
-	extensions = {
-		fzy_native = {
-			override_generic_sorter = false,
-			override_file_sorter = true,
-		},
-	},
 })
 
-require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("harpoon")
 
 local search_vim_config = function()
@@ -120,7 +112,6 @@ end
 
 local custom_find_files = function()
 	require("telescope.builtin").find_files({
-		search_dirs = config.telescope,
 	})
 end
 
