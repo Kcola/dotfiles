@@ -45,6 +45,8 @@ return require("packer").startup(function(use)
 	use({ "Pocco81/DAPInstall.nvim" })
 	use("David-Kunz/jester")
 	use("Hoffs/omnisharp-extended-lsp.nvim")
+  use("github/copilot.vim")
+	use("hrsh7th/cmp-copilot")
 
 	--Terminal
 	use("akinsho/toggleterm.nvim")

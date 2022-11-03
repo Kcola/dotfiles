@@ -9,7 +9,7 @@ if not configs_found then
 end
 
 local getProject = function()
-	return vim.fn.fnamemodify(vim.fn.finddir(".git", ";"), ":h:t")
+	return vim.fn.fnamemodify(vim.fn.finddir(".git/..", ";"), ":p:h:t")
 end
 
 return {

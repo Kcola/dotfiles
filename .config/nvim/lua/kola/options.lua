@@ -36,6 +36,8 @@ vim.opt.hidden = true
 vim.opt.shortmess:append("c")
 vim.opt.laststatus = 3
 vim.opt.shell = 'C:\\Users\\kolacampbell\\Repo\\scripts\\devpwsh.cmd'
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 vim.cmd("let g:tablineclosebutton=1")
 
