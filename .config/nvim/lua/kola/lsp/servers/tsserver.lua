@@ -47,8 +47,10 @@ lspconfig.tsserver.setup({
 			buffer = bufnr,
 			callback = function()
 				local config = require("kola.config").get()
+				local tsconfig_path = vim.fn.fnamemodify(vim.fn.findfile("tsconfig.json", vim.fn.expand("%:p:h") .. ";"), ":p:h");
+
 				if config.enableTypescriptCompiler then
-					vim.fn.jobstart({ "tsc", "-p", vim.fn.expand("%:p:h") }, {
+					vim.fn.jobstart({ "tsc.cmd", "-p", tsconfig_path }, {
 						strdout_buffered = true,
 						on_stdout = function(_, data)
 							P("Compiled " .. vim.fn.expand("%"))

@@ -73,6 +73,7 @@ cmp.setup({
 		["<C-e>"] = cmp.mapping.abort(),
 	}),
 	sources = cmp.config.sources({
+    { name = "copilot"},
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
@@ -88,6 +89,7 @@ cmp.setup({
 				luasnip = "[Snippet]",
 				buffer = "[Buffer]",
 				path = "[Path]",
+        copilot = "[Copilot]"
 			})[entry.source.name]
 			return vim_item
 		end,
