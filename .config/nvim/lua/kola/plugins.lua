@@ -37,7 +37,7 @@ return require("packer").startup(function(use)
 	use({ "nvim-lualine/lualine.nvim", "arkav/lualine-lsp-progress" })
 	use("L3MON4D3/LuaSnip")
 	use("saadparwaiz1/cmp_luasnip")
-	use("jose-elias-alvarez/null-ls.nvim")
+	use({"jose-elias-alvarez/null-ls.nvim", commit="de751688c991216f0d17ced7d5076e0c37fa383f"})
 	use({ "mfussenegger/nvim-dap" })
 	use({ "nvim-telescope/telescope-dap.nvim" })
 	use({ "theHamsta/nvim-dap-virtual-text" })
@@ -45,8 +45,22 @@ return require("packer").startup(function(use)
 	use({ "Pocco81/DAPInstall.nvim" })
 	use("David-Kunz/jester")
 	use("Hoffs/omnisharp-extended-lsp.nvim")
-  use("github/copilot.vim")
-	use("hrsh7th/cmp-copilot")
+  use {
+    "zbirenbaum/copilot.lua",
+    event = "VimEnter",
+    config = function()
+      vim.defer_fn(function()
+        require("copilot").setup()
+      end, 100)
+    end,
+  }
+  use {
+    "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua" },
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  }
 
 	--Terminal
 	use("akinsho/toggleterm.nvim")
