@@ -3,116 +3,121 @@ local entry_display = require("telescope.pickers.entry_display")
 local config = require("kola.config").get()
 
 local entry_from_quickfix = function(opts)
-	opts = opts or {}
+  opts = opts or {}
 
-	local displayer = entry_display.create({
-		separator = "▏",
-		items = {
-			{ width = 8 },
-			{ remaining = true },
-		},
-	})
+  local displayer = entry_display.create({
+    separator = "▏",
+    items = {
+      { width = 8 },
+      { remaining = true },
+    },
+  })
 
-	local make_display = function(entry)
-		local filename = vim.fn.fnamemodify(entry.filename, ":h:t") .. "/" .. vim.fn.fnamemodify(entry.filename, ":t")
+  local make_display = function(entry)
+    local filename = vim.fn.fnamemodify(entry.filename, ":h:t") .. "/" .. vim.fn.fnamemodify(entry.filename, ":t")
 
-		local line_info = { table.concat({ entry.lnum, entry.col }, ":"), "TelescopeResultsLineNr" }
+    local line_info = { table.concat({ entry.lnum, entry.col }, ":"), "TelescopeResultsLineNr" }
 
-		return displayer({
-			line_info,
-			filename,
-		})
-	end
-	return function(entry)
-		local filename = entry.filename or vim.api.nvim_buf_get_name(entry.bufnr)
+    return displayer({
+      line_info,
+      filename,
+    })
+  end
+  return function(entry)
+    local filename = entry.filename or vim.api.nvim_buf_get_name(entry.bufnr)
 
-		return {
-			valid = true,
+    return {
+      valid = true,
 
-			value = entry,
-			ordinal = (not opts.ignore_filename and filename or "") .. " " .. entry.text,
-			display = make_display,
+      value = entry,
+      ordinal = (not opts.ignore_filename and filename or "") .. " " .. entry.text,
+      display = make_display,
 
-			bufnr = entry.bufnr,
-			filename = filename,
-			lnum = entry.lnum,
-			col = entry.col,
-			text = entry.text,
-			start = entry.start,
-			finish = entry.finish,
-		}
-	end
+      bufnr = entry.bufnr,
+      filename = filename,
+      lnum = entry.lnum,
+      col = entry.col,
+      text = entry.text,
+      start = entry.start,
+      finish = entry.finish,
+    }
+  end
 end
 
 require("telescope").setup({
-	defaults = {
-		file_ignore_patterns = { "node_modules", "lib" },
-		prompt_prefix = " >",
-		color_devicons = true,
+  defaults = {
+    file_ignore_patterns = { "node_modules", "lib" },
+    prompt_prefix = " >",
+    color_devicons = true,
 
-		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-	},
-	pickers = {
-		live_grep = {
-			search_dirs = config.telescope,
-			mappings = {
-				i = {
-					["<c-p>"] = function()
-						print(vim.fn.getcwd())
-					end,
-				},
-			},
-		},
-		buffers = {
-			file_ignore_patterns = {},
-			mappings = {
-				n = {
-					["<c-d>"] = "delete_buffer",
-				},
-				i = {
-					["<c-d>"] = "delete_buffer",
-				},
-			},
-		},
-		grep_string = {
-			search_dirs = config.telescope,
-		},
-		git_branches = {
-			layout_strategy = "center",
-		},
-		lsp_definitions = {
-			initial_mode = "normal",
-			entry_maker = entry_from_quickfix(),
-		},
-		lsp_type_definitions = {
-			initial_mode = "normal",
-			entry_maker = entry_from_quickfix(),
-		},
-		lsp_implementations = {
-			initial_mode = "normal",
-			entry_maker = entry_from_quickfix(),
-		},
-		lsp_references = {
-			initial_mode = "normal",
-			entry_maker = entry_from_quickfix(),
-		},
-	},
+    file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+    grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+    qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+  },
+  pickers = {
+    live_grep = {
+      search_dirs = config.telescope,
+      additional_args = function()
+        return { "--hidden" }
+      end,
+      mappings = {
+        i = {
+          ["<c-p>"] = function()
+            print(vim.fn.getcwd())
+          end,
+        },
+      },
+    },
+    buffers = {
+      file_ignore_patterns = {},
+      mappings = {
+        n = {
+          ["<c-d>"] = "delete_buffer",
+        },
+        i = {
+          ["<c-d>"] = "delete_buffer",
+        },
+      },
+    },
+    grep_string = {
+      search_dirs = config.telescope,
+    },
+    git_branches = {
+      layout_strategy = "center",
+    },
+    lsp_definitions = {
+      initial_mode = "normal",
+      entry_maker = entry_from_quickfix(),
+    },
+    lsp_type_definitions = {
+      initial_mode = "normal",
+      entry_maker = entry_from_quickfix(),
+    },
+    lsp_implementations = {
+      initial_mode = "normal",
+      entry_maker = entry_from_quickfix(),
+    },
+    lsp_references = {
+      initial_mode = "normal",
+      entry_maker = entry_from_quickfix(),
+    },
+  },
 })
 
 require("telescope").load_extension("harpoon")
 
 local search_vim_config = function()
-	require("telescope.builtin").find_files({
-		prompt_title = "<VimRc >",
-		cwd = "~/AppData/Local/nvim",
-	})
+  require("telescope.builtin").find_files({
+    prompt_title = "<VimRc >",
+    cwd = "~/dotfiles",
+    hidden = true,
+  })
 end
 
 local custom_find_files = function()
-	require("telescope.builtin").find_files({
-	})
+  require("telescope.builtin").find_files({
+    hidden = true,
+  })
 end
 
 local opts = { noremap = true, silent = true }
