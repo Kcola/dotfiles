@@ -72,6 +72,15 @@ local HOVER_TAB_FG = "Black"
 local NORMAL_TAB_BG = "White"
 local NORMAL_TAB_FG = "Black"
 
+--get last part of path
+local function get_last_part_of_path(path)
+  local last = path:match("^.+\\(.+)$")
+  if last == nil then
+    return path
+  end
+  return last
+end
+
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local background = NORMAL_TAB_BG
   local foreground = NORMAL_TAB_FG
@@ -105,7 +114,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     trailing_bg = NORMAL_TAB_BG
   end
 
-  local title = tab.active_pane.title
+  local title = get_last_part_of_path(tab.active_pane.foreground_process_name)
 
   return {
     { Attribute = { Italic = false } },
