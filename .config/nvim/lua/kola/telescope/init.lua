@@ -46,6 +46,7 @@ end
 
 require("telescope").setup({
   defaults = {
+    path_display = { "truncate" },
     file_ignore_patterns = { "node_modules", "lib" },
     prompt_prefix = " >",
     color_devicons = true,
@@ -111,11 +112,13 @@ local search_vim_config = function()
     prompt_title = "<VimRc >",
     cwd = "~/dotfiles",
     hidden = true,
+    path_display = { "truncate" },
   })
 end
 
 local custom_find_files = function()
   require("telescope.builtin").find_files({
+    path_display = { "truncate" },
     hidden = true,
   })
 end
