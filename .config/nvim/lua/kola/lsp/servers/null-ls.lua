@@ -27,7 +27,7 @@ null_ls.setup({
     --[[ 	extra_args = (config.eslint or {}).args, ]]
     --[[ }), ]]
     null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.csharpier,
+    --null_ls.builtins.formatting.csharpier,
     null_ls.builtins.formatting.prettierd.with({
       filetypes = { "json" },
     }),

@@ -47,6 +47,11 @@ local mykeys = {
     mods = "ALT",
     action = wezterm.action({ SendString = " qf" }),
   },
+  {
+    key = "h",
+    mods = "ALT",
+    action = wezterm.action({ SendString = " history" }),
+  },
 }
 
 for i = 1, 8 do
@@ -62,9 +67,9 @@ local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
 local TAB_BAR_BG = "#1e1e1e"
 local ACTIVE_TAB_BG = "#608B4E"
 local ACTIVE_TAB_FG = "Black"
-local HOVER_TAB_BG = "Grey"
-local HOVER_TAB_FG = "White"
-local NORMAL_TAB_BG = "LightGrey"
+local HOVER_TAB_BG = "White"
+local HOVER_TAB_FG = "Black"
+local NORMAL_TAB_BG = "White"
 local NORMAL_TAB_FG = "Black"
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
@@ -121,12 +126,24 @@ return {
   color_scheme = "VSCodeDark+ (Gogh)",
   default_cwd = "C:\\Users\\kolacampbell\\Repo",
   font = wezterm.font("JetBrainsMono NF"),
+  mouse_bindings = {
+    {
+      event = { Down = { streak = 1, button = "Right" } },
+      mods = "NONE",
+      action = act.Copy,
+    },
+  },
   keys = mykeys,
   tab_bar_at_bottom = true,
   use_fancy_tab_bar = false,
   enable_tab_bar = true,
-  tab_max_width = 32,
-  default_prog = { "powershell" },
+  tab_max_width = 100,
+  default_prog = {
+    "powershell",
+    "-NoExit",
+    "-Command",
+    '$vsPath = & "${env:ProgramFiles(x86)}/Microsoft Visual Studio/Installer/vswhere.exe" -property installationpath; Import-Module "$vsPath/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation',
+  },
   tab_bar_style = {
     new_tab = wezterm.format({
       { Background = { Color = HOVER_TAB_BG } },
