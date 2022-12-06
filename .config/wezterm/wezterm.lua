@@ -54,12 +54,32 @@ local mykeys = {
   },
 }
 
+-- Add mac commands
+local macCommands = {}
+for _, key in ipairs(mykeys) do
+  if key.mods == "ALT" then
+    table.insert(macCommands, {
+      key = key.key,
+      mods = "CMD",
+      action = key.action,
+    })
+  end
+end
+
 for i = 1, 8 do
   table.insert(mykeys, {
     key = tostring(i),
     mods = "ALT",
     action = act.ActivateTab(i - 1),
   })
+end
+
+--concat lua table
+local function concat(t1, t2)
+  for i = 1, #t2 do
+    t1[#t1 + 1] = t2[i]
+  end
+  return t1
 end
 
 local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
@@ -122,9 +142,11 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   }
 end)
 
+mykeys = concat(mykeys, macCommands)
+
 return {
   color_scheme = "VSCodeDark+ (Gogh)",
-  default_cwd = "C:\\Users\\kolacampbell\\Repo",
+  default_cwd = "~/Repo",
   font = wezterm.font("JetBrainsMono NF"),
   mouse_bindings = {
     {
@@ -138,12 +160,6 @@ return {
   use_fancy_tab_bar = false,
   enable_tab_bar = true,
   tab_max_width = 100,
-  default_prog = {
-    "powershell",
-    "-NoExit",
-    "-Command",
-    '$vsPath = & "${env:ProgramFiles(x86)}/Microsoft Visual Studio/Installer/vswhere.exe" -property installationpath; Import-Module "$vsPath/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation',
-  },
   tab_bar_style = {
     new_tab = wezterm.format({
       { Background = { Color = HOVER_TAB_BG } },
