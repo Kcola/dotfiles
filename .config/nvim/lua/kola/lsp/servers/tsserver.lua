@@ -7,7 +7,7 @@ local augroup = vim.api.nvim_create_augroup("tsserver-autocommands", { clear = t
 
 lspconfig.tsserver.setup({
   cmd = {
-    "typescript-language-server.cmd",
+    "typescript-language-server",
     "--stdio",
     "--tsserver-path",
     "/Users/kolacampell/.nvm/versions/node/v14.17.4/lib/node_modules/typescript/lib/",
@@ -47,8 +47,10 @@ lspconfig.tsserver.setup({
       buffer = bufnr,
       callback = function()
         local config = require("kola.config").get()
-        local tsconfig_path =
-        vim.fn.fnamemodify(vim.fn.findfile("tsconfig.json", vim.fn.expand("%:p:h") .. ";"), ":p:h")
+        local tsconfig_path = vim.fn.fnamemodify(
+          vim.fn.findfile("tsconfig.json", vim.fn.expand("%:p:h") .. ";"),
+          ":p:h"
+        )
 
         if config.enableTypescriptCompiler then
           vim.fn.jobstart({ "tsc.cmd", "-p", tsconfig_path }, {

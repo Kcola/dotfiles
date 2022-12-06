@@ -17,9 +17,9 @@ end
 
 local open = function()
   local file_location = vim.fn.expand("%")
-  if file_location:find("dotfiles") then
-    vim.env.GIT_WORK_TREE = vim.fn.expand("$HOME\\dotfiles\\")
-    vim.env.GIT_DIR = vim.fn.expand("$HOME\\dotfiles\\.git")
+  if file_location:find(".config") then
+    vim.env.GIT_WORK_TREE = vim.fn.expand("~/.local/share/yadm/repo.git")
+    vim.env.GIT_DIR = vim.fn.expand("~")
   else
     vim.env.GIT_WORK_TREE = vim.fn.fnamemodify(vim.fn.finddir(".git/..", ";"), ":p:h") .. "\\"
     vim.env.GIT_DIR = vim.fn.fnamemodify(vim.fn.finddir(".git/..", ";"), ":p:h") .. "\\.git"

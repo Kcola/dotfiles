@@ -58,9 +58,7 @@ require("telescope").setup({
   pickers = {
     live_grep = {
       search_dirs = config.telescope,
-      additional_args = function()
-        return { "--hidden" }
-      end,
+      additional_args = function() end,
       mappings = {
         i = {
           ["<c-p>"] = function()
@@ -110,8 +108,7 @@ require("telescope").load_extension("harpoon")
 local search_vim_config = function()
   require("telescope.builtin").find_files({
     prompt_title = "<VimRc >",
-    cwd = "~/dotfiles",
-    hidden = true,
+    cwd = "~/.config",
     path_display = { "truncate" },
   })
 end
@@ -119,7 +116,6 @@ end
 local custom_find_files = function()
   require("telescope.builtin").find_files({
     path_display = { "truncate" },
-    hidden = true,
   })
 end
 
