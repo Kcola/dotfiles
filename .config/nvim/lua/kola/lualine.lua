@@ -102,9 +102,40 @@ ins_left({
   color_info = colors.cyan,
 })
 
+-- shorten directory path
+local function short_path(path, width)
+  local home = vim.fn.expand("$HOME")
+  local home_len = string.len(home)
+  if string.sub(path, 1, home_len) == home then
+    path = "~" .. string.sub(path, home_len + 1)
+  end
+  local len = string.len(path)
+  if len <= width then
+    return path
+  end
+  local result = ""
+  local parts = vim.split(path, "\\")
+  local i = 1
+  while i <= #parts do
+    local part = parts[i]
+    if string.len(part) > 0 then
+      if i == 1 then
+        result = string.sub(part, 1, 1)
+      elseif i ~= #parts then
+        result = result .. "\\" .. string.sub(part, 1, 1)
+      else
+        result = result .. "\\" .. part
+      end
+    end
+    i = i + 1
+  end
+  return result
+end
+
 ins_left({
-  "%f",
-  max_length = vim.o.columns * 1 / 3,
+  function()
+    return short_path(vim.fn.expand("%"), vim.o.columns * 1 / 3)
+  end,
 })
 
 ins_right({

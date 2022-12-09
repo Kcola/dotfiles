@@ -43,6 +43,7 @@ vim.cmd("let g:tablineclosebutton=1")
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set noequalalways]])
+vim.cmd([[au FocusGained,BufEnter * :checktime]])
 vim.cmd([[set ffs=unix,dos]])
 
 -- vim.g.gruvbox_contrast_dark = "hard"
