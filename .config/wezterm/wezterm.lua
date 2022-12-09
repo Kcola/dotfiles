@@ -15,7 +15,14 @@ local mykeys = {
   {
     key = "t",
     mods = "ALT",
-    action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }),
+    action = wezterm.action({ SpawnTab = "DefaultDomain" }),
+  },
+  {
+    key = "t",
+    mods = "SHIFT | ALT",
+    action = wezterm.action.SpawnTab({
+      DomainName = "WSL:Debian",
+    }),
   },
   {
     key = "w",
@@ -51,6 +58,16 @@ local mykeys = {
     key = "h",
     mods = "ALT",
     action = wezterm.action({ SendString = " history" }),
+  },
+  {
+    key = "RightArrow",
+    mods = "ALT",
+    action = wezterm.action({ SendString = ":cnext\n" }),
+  },
+  {
+    key = "LeftArrow",
+    mods = "ALT",
+    action = wezterm.action({ SendString = ":cprev\n" }),
   },
 }
 
