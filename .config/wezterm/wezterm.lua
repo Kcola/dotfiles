@@ -148,6 +148,7 @@ return {
   color_scheme = "VSCodeDark+ (Gogh)",
   default_cwd = "~/Repo",
   font = wezterm.font("JetBrainsMono NF"),
+  font_size = 14.0,
   mouse_bindings = {
     {
       event = { Down = { streak = 1, button = "Right" } },
