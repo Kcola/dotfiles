@@ -3,12 +3,15 @@ local map = vim.api.nvim_set_keymap
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.keymap.set("n", "gs", require("kola.diffview").open)
+
 -- Editing
 map("n", "Y", "y$", opts)
 map("i", ",", ",<C-g>u", opts)
 map("i", ".", ".<C-g>u", opts)
 map("i", "!", "!<C-g>u", opts)
 map("i", "?", "?<C-g>u", opts)
+map("n", "<leader>rl", "<cmd>luafile %<cr>", opts)
 
 -- Navigation
 map("n", "H", ":bp<CR>", opts)
@@ -44,7 +47,6 @@ map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Git
-vim.keymap.set("n", "gs", require("kola.diffview").open)
 map("n", "<leader>gh", ":diffget //3<CR>", opts)
 map("n", "<leader>gf", ":diffget //2<CR>", opts)
 map("n", "<leader>history", "<cmd>DiffviewFileHistory %<cr>", opts)

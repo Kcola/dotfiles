@@ -44,12 +44,6 @@ require("diffview").setup({
 			["cc"] = "<Cmd>botright Git commit<CR>",
 		},
 	},
-	hooks = {
-		view_closed = function()
-			vim.env.GIT_WORK_TREE = nil
-			vim.env.GIT_DIR = nil
-		end,
-	},
 })
 
 function string:firstword()
