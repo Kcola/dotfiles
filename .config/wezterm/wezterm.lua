@@ -165,7 +165,7 @@ return {
 			}
 		or nil,
 	font = wezterm.font("JetBrainsMono NF"),
-	font_size = is_windows and 13 or 14.0,
+	font_size = is_windows and 12 or 14.0,
 	mouse_bindings = {
 		{
 			event = { Down = { streak = 1, button = "Right" } },
