@@ -164,7 +164,7 @@ return {
 				'$vsPath = & "${env:ProgramFiles(x86)}/Microsoft Visual Studio/Installer/vswhere.exe" -property installationpath; Import-Module "$vsPath/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation',
 			}
 		or nil,
-	font = wezterm.font("JetBrainsMono NF"),
+	font = wezterm.font("JetBrainsMono NFM"),
 	font_size = is_windows and 13 or 14.0,
 	mouse_bindings = {
 		{
