@@ -15,6 +15,16 @@ local mykeys = {
 		action = wezterm.action({ SendString = " vrc" }),
 	},
 	{
+		key = "RightArrow",
+		mods = "ALT",
+		action = wezterm.action({ SendString = ":cnext\n" }),
+	},
+	{
+		key = "LeftArrow",
+		mods = "ALT",
+		action = wezterm.action({ SendString = ":cprev\n" }),
+	},
+	{
 		key = "t",
 		mods = "ALT",
 		action = wezterm.action({ SpawnTab = "DefaultDomain" }),
@@ -60,6 +70,18 @@ local mykeys = {
 		key = "h",
 		mods = "ALT",
 		action = wezterm.action({ SendString = " history" }),
+	},
+	{
+		key = "c",
+		mods = "CTRL",
+		action = wezterm.action_callback(function(window, pane)
+			local sel = window:get_selection_text_for_pane(pane)
+			if not sel or sel == "" then
+				window:perform_action(wezterm.action.SendKey({ key = "c", mods = "CTRL" }), pane)
+			else
+				window:perform_action(wezterm.action({ CopyTo = "ClipboardAndPrimarySelection" }), pane)
+			end
+		end),
 	},
 }
 
