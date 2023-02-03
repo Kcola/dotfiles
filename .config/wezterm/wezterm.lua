@@ -117,7 +117,7 @@ local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
 
 local TAB_BAR_BG = "#1e1e1e"
 local ACTIVE_TAB_BG = "#608B4E"
-local ACTIVE_TAB_FG = "Black"
+local ACTIVE_TAB_FG = "White"
 local HOVER_TAB_BG = "White"
 local HOVER_TAB_FG = "Black"
 local NORMAL_TAB_BG = "White"
