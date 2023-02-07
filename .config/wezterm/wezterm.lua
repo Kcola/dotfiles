@@ -1,6 +1,11 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+local P = function(...)
+	print(vim.inspect(...))
+	return ...
+end
+
 local is_windows = wezterm.target_triple:find("windows") ~= nil
 
 local mykeys = {
@@ -24,18 +29,7 @@ local mykeys = {
 		mods = "ALT",
 		action = wezterm.action({ SendString = ":cprev\n" }),
 	},
-	{
-		key = "t",
-		mods = "ALT",
-		action = wezterm.action({ SpawnTab = "DefaultDomain" }),
-	},
-	{
-		key = "t",
-		mods = "SHIFT | ALT",
-		action = wezterm.action.SpawnTab({
-			DomainName = "WSL:Debian",
-		}),
-	},
+	{ key = "t", mods = "ALT", action = wezterm.action.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS" }) },
 	{
 		key = "w",
 		mods = "ALT",
@@ -175,7 +169,32 @@ end)
 
 mykeys = concat(mykeys, macCommands)
 
+local launch_menu = {
+	{
+		label = "Ubuntu",
+		domain = { DomainName = "WSL:Ubuntu" },
+		cwd = "~/repo",
+	},
+	{
+		label = "Powershell",
+		domain = { DomainName = "local" },
+		cwd = "C:\\Users\\kolacampbell\\Repo",
+		args = {
+			"powershell",
+			"-NoExit",
+			"-Command",
+			'$vsPath = & "${env:ProgramFiles(x86)}/Microsoft Visual Studio/Installer/vswhere.exe" -property installationpath; Import-Module "$vsPath/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation',
+		},
+	},
+}
+
+wezterm.on("gui-startup", function(cmd)
+	local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+	window:gui_window():maximize()
+end)
+
 return {
+	launch_menu = launch_menu,
 	color_scheme = "VSCodeDark+ (Gogh)",
 	default_cwd = is_windows and "C:\\Users\\kolacampbell\\Repo\\" or "~/Repo",
 	default_prog = is_windows
@@ -189,6 +208,7 @@ return {
 	font = wezterm.font_with_fallback({
 		"JetBrainsMono NFM",
 		"JetBrainsMono NF",
+		"FiraCode Nerd Font",
 	}),
 	font_size = is_windows and 12 or 14.0,
 	mouse_bindings = {
