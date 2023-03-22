@@ -171,11 +171,6 @@ mykeys = concat(mykeys, macCommands)
 
 local launch_menu = {
 	{
-		label = "Ubuntu",
-		domain = { DomainName = "WSL:Ubuntu" },
-		cwd = "~/repo",
-	},
-	{
 		label = "Powershell",
 		domain = { DomainName = "local" },
 		cwd = "C:\\Users\\kolacampbell\\Repo",
@@ -185,6 +180,11 @@ local launch_menu = {
 			"-Command",
 			'$vsPath = & "${env:ProgramFiles(x86)}/Microsoft Visual Studio/Installer/vswhere.exe" -property installationpath; Import-Module "$vsPath/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation',
 		},
+	},
+	{
+		label = "Ubuntu",
+		domain = { DomainName = "WSL:Ubuntu" },
+		cwd = "~/repo",
 	},
 }
 
