@@ -12,7 +12,7 @@ local mykeys = {
 	{
 		key = "v",
 		mods = "CTRL",
-		action = wezterm.action("Paste"),
+		action = act.PasteFrom("Clipboard"),
 	},
 	{
 		key = ",",
@@ -215,7 +215,7 @@ return {
 		{
 			event = { Down = { streak = 1, button = "Right" } },
 			mods = "NONE",
-			action = act.Copy,
+			action = act.CopyTo("ClipboardAndPrimarySelection"),
 		},
 	},
 	keys = mykeys,
