@@ -9,9 +9,20 @@ Set-Alias -Name s -Value save
 Set-Alias -Name g -Value goto
 Set-Alias -Name vim -Value nvim
 
-function Get-GitWorktree { & git worktree $args }
+$ScriptsDIR = "$HOME\dotfiles\scripts"
+function Get-GitWorktree { 
+  if ($args -eq "clean"){
+     & deno run -A "$ScriptsDIR\git-worktree.clean.ts" .  
+  }
+  else {
+     & echo $args
+     & git worktree $args
+  }
+}
+function Clean-GitWorktree { & deno run -A "$ScriptsDIR\git-clean.ts" . }
 
 New-Alias -Name gw -Value Get-GitWorktree
+New-Alias -Name gw-clean -Value Get-GitWorktree
 
 function Get-GitStatus { & git status $args }
 New-Alias -Name gs -Value Get-GitStatus
