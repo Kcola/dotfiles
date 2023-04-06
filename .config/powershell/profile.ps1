@@ -19,7 +19,6 @@ function Get-GitWorktree {
      & git worktree $args
   }
 }
-function Clean-GitWorktree { & deno run -A "$ScriptsDIR\git-clean.ts" . }
 
 New-Alias -Name gw -Value Get-GitWorktree
 New-Alias -Name gw-clean -Value Get-GitWorktree
