@@ -10,6 +10,11 @@ local is_windows = wezterm.target_triple:find("windows") ~= nil
 
 local mykeys = {
     {
+        key = "v",
+        mods = "CTRL",
+        action = act.PasteFrom("Clipboard"),
+    },
+    {
         key = ",",
         mods = "ALT",
         action = wezterm.action({ SendString = " vrc" }),
