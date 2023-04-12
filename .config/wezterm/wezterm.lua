@@ -15,6 +15,11 @@ local mykeys = {
         action = act.PasteFrom("Clipboard"),
     },
     {
+        key = "j",
+        mods = "ALT",
+        action = wezterm.action({ SendString = " J" }),
+    },
+    {
         key = ",",
         mods = "ALT",
         action = wezterm.action({ SendString = " vrc" }),
