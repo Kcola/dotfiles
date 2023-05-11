@@ -15,7 +15,6 @@ function Get-GitWorktree {
      & deno run -A "$ScriptsDIR\git-worktree.clean.ts" .  
   }
   else {
-     & echo $args
      & git worktree $args
   }
 }
