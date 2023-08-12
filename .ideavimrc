@@ -1,4 +1,6 @@
 let mapleader = " "
+set clipboard+=unnamed
+set clipboard+=ideaput 
 set visualbell
 set noerrorbells
 set number
@@ -6,7 +8,6 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
-noremap <leader>p viw"0p
 inoremap <Up> <Nop>
 inoremap <Down> <Nop>
 inoremap <Left> <Nop>
@@ -14,12 +15,25 @@ inoremap <Right> <Nop>
 set incsearch
 
 " keymaps
+nmap \e :e C:\\Users\\kolacampbell\\.ideavimrc<cr>
+nmap \r <action>(IdeaVim.ReloadVimRc.reload)
 nmap H <action>(PreviousTab)
 nmap L <action>(NextTab)
 nmap ]g <action>(GotoNextError)
 nmap [g <action>(GotoPreviousError)
 nmap gr <action>(ShowUsages)
+nmap gi <action>(GotoImplementation)
 nmap <C-p> <action>(GotoFile)
+nmap <leader>rn <action>(RenameElement)
+nmap <C-b> <action>(RecentFiles)
+nmap <leader>ff <action>(FindInPath)
+
+" git keymaps
+nmap gs <action>(Tool_External Tools_diffview)
+nmap ]c <action>(VcsShowNextChangeMarker)
+nmap [c <action>(VcsShowPrevChangeMarker)
+nmap <leader>hr <action>(Vcs.RollbackChangedLines)
+nmap <leader>hR <action>(ChangesView.Revert)
 
 " NERDTree
 set NERDTree
