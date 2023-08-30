@@ -21,5 +21,4 @@ if (!(Get-Command git -ErrorAction SilentlyContinue)) {
 git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
 echo "installed packer nvim"
 
-
-[Environment]::SetEnvironmentVariable("WEZTERM_CONFIG_FILE", "$DotfilesLocation\.config\wezterm\westerm.lua", "Machine")
+[Environment]::SetEnvironmentVariable("WEZTERM_CONFIG_FILE", "$DotfilesLocation\.config\wezterm\wezterm.lua", "Machine")
