@@ -1,6 +1,7 @@
 $DotfilesLocation = "$Home\dotfiles"
  
 New-Item -ItemType SymbolicLink -Path "$Home/AppData/Local/nvim" -Target "$Home/dotfiles/.config/nvim"
+New-Item -ItemType SymbolicLink -Path "$Home/AppData/Local/diffview" -Target "$Home/dotfiles/.config/diffview"
 echo "created nvim config symlink"
 
 "$PROFILE = 'C:\Users\kolacampbell\dotfiles\.config\powershell\profile.ps1'
