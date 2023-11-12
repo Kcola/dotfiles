@@ -42,30 +42,6 @@ Invoke-Expression (& {
     (zoxide init --hook $hook powershell | Out-String)
 })
 
-function Update-FieldServiceBuild {
-    try {
-        $date = Get-Date -Format "yyMMdd"
-        $output = "$env:TEMP\FieldService.$date"
-
-        Start msedge "https://dev.azure.com/dynamicscrm/OneCRM/_build?definitionId=16035"
-        Write-Host "Download latest 9.1 build in Artifacts and place in your downloads folder"
-        Pause
-
-        $package = GCI "$env:USERPROFILE/Downloads/FieldService.PdPackage*.zip" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-
-        # Unzip
-        Expand-Archive -Path $package.FullName -DestinationPath $output
-
-        code "$output\FieldService.PdPackage\ImportConfig.xml"
-        Write-Host "Make any changes to the config file and save"
-        Pause
-
-        # Repack
-        $zip = "$env:USERPROFILE/Downloads/FieldService.PdPackage.$date.zip"
-        Compress-Archive -Path $output\* -DestinationPath $zip -Force
-        pac package deploy -p $zip
-    }
-    catch {
-        Write-Error $_
-    }
+function diffview {
+    $env:NVIM_APPNAME="diffview"; nvim -c "DiffviewOpen"; $env:NVIM_APPNAME=$null
 }
