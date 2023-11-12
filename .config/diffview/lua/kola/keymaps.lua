@@ -33,7 +33,7 @@ vim.keymap.set("n", "<C-W>", ":%bd!|e#<CR>", opts)
 vim.keymap.set("n", "q", function()
     local tabNumber = vim.fn.tabpagenr()
     if tabNumber > 1 then
-        vim.cmd("tabclose")
+        os.exit()
     end
 end)
 
