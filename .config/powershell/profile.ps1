@@ -45,3 +45,7 @@ Invoke-Expression (& {
 function diffview {
     $env:NVIM_APPNAME="diffview"; nvim -c "DiffviewOpen"; $env:NVIM_APPNAME=$null
 }
+
+function start-cdb{
+ & 'C:\Program Files\Azure Cosmos DB Emulator\CosmosDB.Emulator.exe' /port=11000 /NoExplorer
+}
