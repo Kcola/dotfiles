@@ -185,7 +185,7 @@ local launch_menu = {
         domain = { DomainName = "local" },
         cwd = "C:\\Users\\kolacampbell\\Repo",
         args = {
-            "powershell",
+            "pwsh",
             "-NoExit",
             "-Command",
             '$vsPath = & "${env:ProgramFiles(x86)}/Microsoft Visual Studio/Installer/vswhere.exe" -property installationpath; Import-Module "$vsPath/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation',
@@ -209,7 +209,7 @@ return {
     default_cwd = is_windows and "C:\\Users\\kolacampbell\\Repo\\" or "~/Repo",
     default_prog = is_windows
             and {
-                "powershell",
+                "pwsh",
                 "-NoExit",
                 "-Command",
                 '$vsPath = & "${env:ProgramFiles(x86)}/Microsoft Visual Studio/Installer/vswhere.exe" -property installationpath; Import-Module "$vsPath/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation',
