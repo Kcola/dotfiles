@@ -27,9 +27,9 @@ properties:
           - dotfiles
       settings:
         GetScript: |
-          return $(ls $Home/dotfiles/.config/nvim)
+          return $(ls $$Home/AppData/Local/nvim)
         TestScript:
-          return $(Test-Path $Home/dotfiles/.config/nvim)
+          return $(Test-Path $Home/AppData/Local/nvim)
         SetScript: |
           cd ./dotfiles
           git submodule init
@@ -41,6 +41,9 @@ properties:
       directives:
         description: set env
         allowPrerelease: true
+        dependsOn:
+          - git
+          - dotfiles
       settings:
         Name: WEZTERM_CONFIG_FILE
         Value: "$Home\dotfiles\.config\wezterm\wezterm.lua"
