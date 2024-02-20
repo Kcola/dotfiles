@@ -64,18 +64,18 @@ properties:
           git submodule update
           New-Item -ItemType SymbolicLink -Path "$Home/AppData/Local/nvim" -Target "$Home/dotfiles/.config/nvim"
           New-Item -ItemType SymbolicLink -Path "$Home/AppData/Local/diffview" -Target "$Home/dotfiles/.config/diffview"
-    - resource: PSDscResources/Environment
-      id: env
+    - resource: PSDscResources/Script
+      id: wezterm-config
       directives:
-        description: set env
-        allowPrerelease: true
-        dependsOn:
-          - git
-          - dotfiles
+        description: set wezterm config
+        allowPrerelease: false
       settings:
-        Name: WEZTERM_CONFIG_FILE
-        Value: |
-          "$Home\dotfiles\.config\wezterm\wezterm.lua"
+        GetScript: |
+          return $false
+        TestScript:
+          return $false
+        SetScript: |
+          [Environment]::SetEnvironmentVariable("WEZTERM_CONFIG_FILE", "$Home\dotfiles\.config\wezterm\wezterm.lua", "Machine")
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: wezterm
       directives:
