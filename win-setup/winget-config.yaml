@@ -1,0 +1,135 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: git
+      directives:
+        description: Install Git
+        allowPrerelease: true
+      settings:
+        id: Git.Git
+        source: winget
+    - resource: GitDsc/GitClone
+      id: dotfiles
+      directives:
+        description: Clone dotfiles
+        allowPrerelease: true
+      settings:
+        HttpsUrl: https://github.com/Kcola/dotfiles.git
+        RootDirectory: '${WingetConfigRoot}'
+    - resource: PSDscResources/Script
+      id: nvim-init
+      directives:
+        description: init neovim config
+        allowPrerelease: false
+        dependsOn:
+          - git
+          - dotfiles
+      settings:
+        GetScript: |
+          return $(ls $Home/dotfiles/.config/nvim)
+        TestScript:
+          return $(Test-Path $Home/dotfiles/.config/nvim)
+        SetScript: |
+          cd ./dotfiles
+          git submodule init
+          git submodule update
+          New-Item -ItemType SymbolicLink -Path "$Home/AppData/Local/nvim" -Target "$Home/dotfiles/.config/nvim"
+          New-Item -ItemType SymbolicLink -Path "$Home/AppData/Local/diffview" -Target "$Home/dotfiles/.config/diffview"
+    - resource: PSDscResources/Environment
+      id: env
+      directives:
+        description: set env
+        allowPrerelease: true
+      settings:
+        Name: WEZTERM_CONFIG_FILE
+        Value: "$Home\dotfiles\.config\wezterm\wezterm.lua"
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: wezterm
+      directives:
+        description: Install wezterm
+        allowPrerelease: true
+      settings:
+        id: wez.wezterm
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: neovim
+      directives:
+        description: Install neovim
+        allowPrerelease: true
+      settings:
+        id: Neovim.Neovim
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: nvm
+      directives:
+        description: Install nvm
+        allowPrerelease: true
+      settings:
+        id: CoreyButler.NVMforWindows
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: bat
+      directives:
+        description: Install bat
+        allowPrerelease: true
+      settings:
+        id: sharkdp.bat
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: fd
+      directives:
+        description: Install fd
+        allowPrerelease: true
+      settings:
+        id: sharkdp.fd
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: rust
+      directives:
+        description: Install Rust
+        allowPrerelease: true
+      settings:
+        id: Rustlang.Rust.MSVC
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: jq
+      directives:
+        description: Install jq
+        allowPrerelease: true
+      settings:
+        id: jqlang.jq
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: rg
+      directives:
+        description: Install rg
+        allowPrerelease: true
+      settings:
+        id: BurntSushi.ripgrep
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: starship
+      directives:
+        description: Install starship
+        allowPrerelease: true
+      settings:
+        id: Starship.Starship
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: zoxide
+      directives:
+        description: Install zoxide
+        allowPrerelease: true
+      settings:
+        id: ajeetdsouza.zoxide
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: powershell
+      directives:
+        description: Install powershell
+        allowPrerelease: true
+      settings:
+        id: Windows.Powershell
+        source: winget
+  configurationVersion: 0.2.0
