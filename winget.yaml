@@ -7,7 +7,7 @@ properties:
         description: Install powershell
         allowPrerelease: true
       settings:
-        id: Windows.Powershell
+        id: Microsoft.PowerShell
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: git
@@ -26,6 +26,26 @@ properties:
         HttpsUrl: https://github.com/Kcola/dotfiles.git
         RootDirectory: '${WingetConfigRoot}'
     - resource: PSDscResources/Script
+      id: powershell-init
+      directives:
+        description: init powershell profile
+        allowPrerelease: false
+        dependsOn:
+          - git
+          - dotfiles
+      settings:
+        GetScript: |
+          return $(Get-Content $HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1)
+        TestScript:
+          return $(Test-Path $Home\AppData\Local\PowerShell\Microsoft.PowerShell_profile.ps1)
+        SetScript: |
+          $PowershellProfileDirectory = "$HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
+          if (-not (Test-Path $PowershellProfileDirectory)) {
+              New-Item -ItemType File -Path $PowershellProfileDirectory -Force
+          }
+          "`$PROFILE = '$HOME\dotfiles\.config\powershell\profile.ps1'
+          . `$PROFILE" | Out-File -FilePath "$HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" -Encoding UTF8
+    - resource: PSDscResources/Script
       id: nvim-init
       directives:
         description: init neovim config
@@ -35,7 +55,7 @@ properties:
           - dotfiles
       settings:
         GetScript: |
-          return $(ls $$Home/AppData/Local/nvim)
+          return $(ls $Home/AppData/Local/nvim)
         TestScript:
           return $(Test-Path $Home/AppData/Local/nvim)
         SetScript: |
@@ -54,7 +74,8 @@ properties:
           - dotfiles
       settings:
         Name: WEZTERM_CONFIG_FILE
-        Value: "$Home\dotfiles\.config\wezterm\wezterm.lua"
+        Value: |
+          "$Home\dotfiles\.config\wezterm\wezterm.lua"
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: wezterm
       directives:
@@ -79,6 +100,21 @@ properties:
       settings:
         id: CoreyButler.NVMforWindows
         source: winget
+    - resource: PSDscResources/Script
+      id: node-init
+      directives:
+        description: init neovim config
+        allowPrerelease: false
+        dependsOn:
+          - nvm
+      settings:
+        GetScript: |
+          return $false
+        TestScript:
+          return $false
+        SetScript: |
+          nvm install 18
+          nvm use 18
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: bat
       directives:
@@ -117,7 +153,7 @@ properties:
         description: Install rg
         allowPrerelease: true
       settings:
-        id: BurntSushi.ripgrep
+        id: BurntSushi.ripgrep.MSVC
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: starship
