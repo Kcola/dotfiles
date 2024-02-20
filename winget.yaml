@@ -37,7 +37,7 @@ properties:
         GetScript: |
           return $(Get-Content $HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1)
         TestScript:
-          return $(Test-Path $Home\AppData\Local\PowerShell\Microsoft.PowerShell_profile.ps1)
+          return $(Test-Path $HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1)
         SetScript: |
           $PowershellProfileDirectory = "$HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
           if (-not (Test-Path $PowershellProfileDirectory)) {
