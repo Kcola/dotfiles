@@ -2,6 +2,14 @@
 properties:
   resources:
     - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: powershell
+      directives:
+        description: Install powershell
+        allowPrerelease: true
+      settings:
+        id: Windows.Powershell
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: git
       directives:
         description: Install Git
@@ -126,13 +134,5 @@ properties:
         allowPrerelease: true
       settings:
         id: ajeetdsouza.zoxide
-        source: winget
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: powershell
-      directives:
-        description: Install powershell
-        allowPrerelease: true
-      settings:
-        id: Windows.Powershell
         source: winget
   configurationVersion: 0.2.0
