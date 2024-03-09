@@ -1,0 +1,40 @@
+let mapleader = " "
+set clipboard=unnamed
+set visualbell
+set number
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+set incsearch
+
+nmap <C-p> :vsc Edit.GoToAll<CR>
+
+" keymaps
+nmap H :tabprevious<CR>
+nmap L :tabnext<CR>
+nmap ]g :vsc View.NextError<CR>
+nmap [g :vsc View.PreviousError<CR>
+nmap gr :vsc Edit.FindAllReferences<CR>
+nmap gd :vsc Edit.GoToDefinition<CR>
+nmap K :vsc Edit.QuickInfo<CR>
+nmap <F12> :vsc View.Terminal<CR>
+nmap <leader>rn :vsc Refactor.Rename<CR>
+nmap <C-b> :vsc Edit.GoToRecentFile<CR>
+"
+" " git keymaps
+" nmap gs <action>(Tool_External Tools_diffview)
+" nmap ]c <action>(VcsShowNextChangeMarker)
+" nmap [c <action>(VcsShowPrevChangeMarker)
+" nmap <leader>hr <action>(Vcs.RollbackChangedLines)
+" nmap <leader>hR <action>(ChangesView.Revert)
+"
+" " NERDTree
+" set NERDTree
+" let g:NERDTreeMapOpenInTab='\t'
+" let g:NERDTreeMapQuit = '<leader>t'
+" nmap <leader>t :NERDTreeToggle<CR>
