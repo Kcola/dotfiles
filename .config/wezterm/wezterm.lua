@@ -34,7 +34,7 @@ local mykeys = {
         mods = "ALT",
         action = wezterm.action({ SendString = ":cprev\n" }),
     },
-    { key = "t", mods = "ALT", action = wezterm.action.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS" }) },
+    { key = "t", mods = "ALT", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
     {
         key = "w",
         mods = "ALT",
@@ -204,7 +204,7 @@ wezterm.on("gui-startup", function(cmd)
 end)
 
 return {
-    launch_menu = launch_menu,
+    --launch_menu = launch_menu,
     color_scheme = "VSCodeDark+ (Gogh)",
     default_cwd = is_windows and "C:\\Users\\kolacampbell\\Repo\\" or "~/Repo",
     default_prog = is_windows
