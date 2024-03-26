@@ -1,7 +1,12 @@
 # Tell starship where its config is:
+if ($IsWindows){
 $ENV:STARSHIP_CONFIG = "$HOME\dotfiles\.config\starship.toml"
 $ENV:WEZTERM_CONFIG_FILE = "$HOME\dotfiles\.config\wezterm\wezterm.lua"
 $ENV:NVIM_FULL = 'true'
+}
+if($IsMacOS){
+Set-NodeVersion -Persist User 18
+}
 # Start starship:
 Invoke-Expression (&starship init powershell)
 

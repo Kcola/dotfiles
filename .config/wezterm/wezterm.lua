@@ -179,7 +179,7 @@ end)
 
 mykeys = concat(mykeys, macCommands)
 
-local launch_menu = {
+local launch_menu_windows = {
     {
         label = "Powershell",
         domain = { DomainName = "local" },
@@ -204,7 +204,7 @@ wezterm.on("gui-startup", function(cmd)
 end)
 
 return {
-    --launch_menu = launch_menu,
+    launch_menu = is_windows and launch_menu_windows or nil,
     color_scheme = "VSCodeDark+ (Gogh)",
     default_cwd = is_windows and "C:\\Users\\kolacampbell\\Repo\\" or "~/Repo",
     default_prog = is_windows
