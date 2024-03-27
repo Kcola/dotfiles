@@ -1,11 +1,6 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
-local P = function(...)
-    print(vim.inspect(...))
-    return ...
-end
-
 local is_windows = wezterm.target_triple:find("windows") ~= nil
 
 local mykeys = {
@@ -13,6 +8,25 @@ local mykeys = {
         key = "v",
         mods = "CTRL",
         action = act.PasteFrom("Clipboard"),
+    },
+    {
+        key = "F12",
+        action = wezterm.action_callback(function(win, pane)
+            local panes = win:active_tab():panes()
+            if #panes == 1 then
+                pane:split({
+                    direction = "Right",
+                    size = 0.4,
+                })
+            else
+                pane:send_text("exit\n")
+            end
+        end),
+    },
+    {
+        key = "T",
+        mods = "CTRL",
+        action = wezterm.action.TogglePaneZoomState,
     },
     {
         key = "j",

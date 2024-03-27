@@ -14,6 +14,8 @@ Set-Alias -Name s -Value save
 Set-Alias -Name g -Value goto
 Set-Alias -Name vim -Value nvim
 
+$env:Path += ";$HOME\.cargo\bin"
+
 $ScriptsDIR = "$HOME\dotfiles\scripts"
 function Get-GitWorktree { 
   if ($args -eq "clean"){
@@ -54,3 +56,4 @@ function diffview {
 function start-cdb{
  & 'C:\Program Files\Azure Cosmos DB Emulator\CosmosDB.Emulator.exe' /port=11000 /NoExplorer
 }
+
