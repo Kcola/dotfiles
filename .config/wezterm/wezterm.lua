@@ -11,15 +11,20 @@ local mykeys = {
     },
     {
         key = "F12",
-        action = wezterm.action_callback(function(win, pane)
-            local panes = win:active_tab():panes()
+        action = wezterm.action_callback(function(_, pane)
+            local tab = pane:tab()
+            local panes = tab:panes_with_info()
             if #panes == 1 then
                 pane:split({
                     direction = "Right",
                     size = 0.4,
                 })
-            else
-                pane:send_text("exit\n")
+            elseif not panes[1].is_zoomed then
+                panes[1].pane:activate()
+                tab:set_zoomed(true)
+            elseif panes[1].is_zoomed then
+                tab:set_zoomed(false)
+                panes[2].pane:activate()
             end
         end),
     },
