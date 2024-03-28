@@ -226,6 +226,9 @@ return {
     launch_menu = is_windows and launch_menu_windows or nil,
     color_scheme = "VSCodeDark+ (Gogh)",
     default_cwd = is_windows and "C:\\Users\\kolacampbell\\Repo\\" or "~/Repo",
+    set_environment_variables = {
+        PATH = "/opt/homebrew/bin/:" .. os.getenv("PATH"),
+    },
     default_prog = is_windows
             and {
                 "pwsh",
@@ -233,7 +236,7 @@ return {
                 "-Command",
                 '$vsPath = & "${env:ProgramFiles(x86)}/Microsoft Visual Studio/Installer/vswhere.exe" -property installationpath; Import-Module "$vsPath/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation',
             }
-        or nil,
+        or { "pwsh" },
     font = wezterm.font_with_fallback({
         "JetBrainsMono NFM",
         "JetBrainsMono NF",
