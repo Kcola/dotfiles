@@ -57,3 +57,5 @@ function start-cdb{
  & 'C:\Program Files\Azure Cosmos DB Emulator\CosmosDB.Emulator.exe' /port=11000 /NoExplorer
 }
 
+fnm env --use-on-cd | Out-String | Invoke-Expression
+
