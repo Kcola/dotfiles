@@ -232,7 +232,7 @@ return {
             default_cwd = "~/repo",
         },
     },
-    default_domain = "WSL:Ubuntu",
+    default_domain = is_windows and "WSL:Ubuntu" or nil,
     color_scheme = "VSCodeDark+ (Gogh)",
     font = wezterm.font_with_fallback({
         "JetBrainsMono NFM",
