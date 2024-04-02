@@ -3,7 +3,60 @@ local act = wezterm.action
 
 local is_windows = wezterm.target_triple:find("windows") ~= nil
 
+local function basename(s)
+    return string.gsub(s, "(.*[/\\])(.*)", "%2")
+end
+
+local function is_vim(pane)
+    local cmd = basename(pane:get_foreground_process_name())
+    return cmd == "nvim" or cmd == "vim"
+end
+
 local mykeys = {
+    {
+        key = "h",
+        mods = "CTRL",
+        action = wezterm.action_callback(function(win, pane)
+            if is_vim(pane) then
+                win:perform_action(act.SendKey({ key = "h", mods = "CTRL" }), pane)
+            else
+                win:perform_action(act.ActivatePaneDirection("Left"), pane)
+            end
+        end),
+    },
+    {
+        key = "l",
+        mods = "CTRL",
+        action = wezterm.action_callback(function(win, pane)
+            if is_vim(pane) then
+                win:perform_action(act.SendKey({ key = "l", mods = "CTRL" }), pane)
+            else
+                win:perform_action(act.ActivatePaneDirection("Right"), pane)
+            end
+        end),
+    },
+    {
+        key = "k",
+        mods = "CTRL",
+        action = wezterm.action_callback(function(win, pane)
+            if is_vim(pane) then
+                win:perform_action(act.SendKey({ key = "k", mods = "CTRL" }), pane)
+            else
+                win:perform_action(act.ActivatePaneDirection("Up"), pane)
+            end
+        end),
+    },
+    {
+        key = "j",
+        mods = "CTRL",
+        action = wezterm.action_callback(function(win, pane)
+            if is_vim(pane) then
+                win:perform_action(act.SendKey({ key = "j", mods = "CTRL" }), pane)
+            else
+                win:perform_action(act.ActivatePaneDirection("Down"), pane)
+            end
+        end),
+    },
     {
         key = "v",
         mods = "CTRL",
