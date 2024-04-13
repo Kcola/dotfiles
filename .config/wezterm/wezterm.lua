@@ -3,13 +3,10 @@ local act = wezterm.action
 
 local is_windows = wezterm.target_triple:find("windows") ~= nil
 
-local function basename(s)
-    return string.gsub(s, "(.*[/\\])(.*)", "%2")
-end
-
-local function is_vim(pane)
-    local cmd = basename(pane:get_foreground_process_name())
-    return cmd == "nvim" or cmd == "vim"
+local function terminalIsClosed(pane)
+    local tab = pane:tab()
+    local panes = tab:panes_with_info()
+    return panes[1].is_zoomed or #panes == 1
 end
 
 local mykeys = {
@@ -17,7 +14,7 @@ local mykeys = {
         key = "h",
         mods = "CTRL",
         action = wezterm.action_callback(function(win, pane)
-            if is_vim(pane) then
+            if terminalIsClosed(pane) then
                 win:perform_action(act.SendKey({ key = "h", mods = "CTRL" }), pane)
             else
                 win:perform_action(act.ActivatePaneDirection("Left"), pane)
@@ -28,7 +25,7 @@ local mykeys = {
         key = "l",
         mods = "CTRL",
         action = wezterm.action_callback(function(win, pane)
-            if is_vim(pane) then
+            if terminalIsClosed(pane) then
                 win:perform_action(act.SendKey({ key = "l", mods = "CTRL" }), pane)
             else
                 win:perform_action(act.ActivatePaneDirection("Right"), pane)
@@ -39,7 +36,7 @@ local mykeys = {
         key = "k",
         mods = "CTRL",
         action = wezterm.action_callback(function(win, pane)
-            if is_vim(pane) then
+            if terminalIsClosed(pane) then
                 win:perform_action(act.SendKey({ key = "k", mods = "CTRL" }), pane)
             else
                 win:perform_action(act.ActivatePaneDirection("Up"), pane)
@@ -50,7 +47,7 @@ local mykeys = {
         key = "j",
         mods = "CTRL",
         action = wezterm.action_callback(function(win, pane)
-            if is_vim(pane) then
+            if terminalIsClosed(pane) then
                 win:perform_action(act.SendKey({ key = "j", mods = "CTRL" }), pane)
             else
                 win:perform_action(act.ActivatePaneDirection("Down"), pane)
@@ -71,6 +68,7 @@ local mykeys = {
                 pane:split({
                     direction = "Right",
                     size = 0.4,
+                    domain = "CurrentPaneDomain",
                 })
             elseif not panes[1].is_zoomed then
                 panes[1].pane:activate()
