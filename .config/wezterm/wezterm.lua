@@ -256,12 +256,8 @@ local launch_menu_windows = {
     {
         label = "Powershell",
         domain = { DomainName = "local" },
-        cwd = "C:\\Users\\kolacampbell\\Repo",
         args = {
             "pwsh",
-            "-NoExit",
-            "-Command",
-            '$vsPath = & "${env:ProgramFiles(x86)}/Microsoft Visual Studio/Installer/vswhere.exe" -property installationpath; Import-Module "$vsPath/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation',
         },
     },
     {
@@ -285,7 +281,7 @@ return {
             default_cwd = "~/repo",
         },
     },
-    default_domain = is_windows and "WSL:Ubuntu" or nil,
+    default_prog = is_windows and { "pwsh" } or nil,
     color_scheme = "VSCodeDark+ (Gogh)",
     font = wezterm.font_with_fallback({
         "JetBrainsMono NFM",
