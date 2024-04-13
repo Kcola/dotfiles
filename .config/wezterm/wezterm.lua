@@ -71,6 +71,7 @@ local mykeys = {
                 pane:split({
                     direction = "Right",
                     size = 0.4,
+                    domain = "CurrentPaneDomain",
                 })
             elseif not panes[1].is_zoomed then
                 panes[1].pane:activate()
@@ -285,7 +286,7 @@ return {
             default_cwd = "~/repo",
         },
     },
-    default_domain = is_windows and "WSL:Ubuntu" or nil,
+    default_prog = { "pwsh" },
     color_scheme = "VSCodeDark+ (Gogh)",
     font = wezterm.font_with_fallback({
         "JetBrainsMono NFM",
