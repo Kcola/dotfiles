@@ -93,18 +93,17 @@ properties:
         id: Neovim.Neovim
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: nvm
+      id: fnm
       directives:
-        description: Install nvm
+        description: Install fnm
         allowPrerelease: true
       settings:
-        id: CoreyButler.NVMforWindows
+        id: Schniz.fnm
         source: winget
-        version: "1.1.11"
     - resource: PSDscResources/Script
       id: node-init
       directives:
-        description: init neovim config
+        description: init fnm config
         allowPrerelease: false
         dependsOn:
           - nvm
@@ -114,8 +113,9 @@ properties:
         TestScript:
           return $false
         SetScript: |
-          & $HOME\AppData\Roaming\nvm\nvm.exe install 18
-          & $HOME\AppData\Roaming\nvm\nvm.exe use 18
+          fnm env --use-on-cd | Out-String | Invoke-Expression
+          fnm install 18
+          fnm use 18
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: bat
       directives:
