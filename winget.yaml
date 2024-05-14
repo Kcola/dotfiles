@@ -222,4 +222,12 @@ properties:
       settings:
         id: Postman.Postman
         source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: tokei
+      directives:
+        description: Install Tokei
+        allowPrerelease: true
+      settings:
+        id: XAMPPRocky.tokei
+        source: winget
   configurationVersion: 0.2.0
