@@ -10,10 +10,6 @@ if status is-interactive
   alias windir="cd $windows_home"
   alias wez="vim $windows_home/dotfiles/.config/wezterm/wezterm.lua"
   alias ls="ls -a"
-  alias ppux-pva "cd $PPUX_PVA"
-  alias ppux "cd $PPUX"
-  alias bom-client "cd $BOM_CLIENT"
-  alias formula-bar "cd $PPUX_FORMULA_BAR"
   alias 'rg'='rg --smart-case --hidden --no-heading --column'
   alias clear "TERM=xterm /usr/bin/clear"
   source ~/.fishmarks/marks.fish
