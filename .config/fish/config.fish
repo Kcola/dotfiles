@@ -1,4 +1,5 @@
 set windows_home "/mnt/c/Users/(whoami)"
+eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 if status is-interactive
   zoxide init fish | source
   fish_default_key_bindings
