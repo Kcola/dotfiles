@@ -279,7 +279,8 @@ return {
             default_cwd = "~/repo",
         },
     },
-    default_prog = is_windows and { "pwsh" } or nil,
+    -- default_prog = is_windows and { "pwsh" } or nil,
+    default_domain = is_windows and "WSL:Ubuntu" or nil,
     color_scheme = "VSCodeDark+ (Gogh)",
     font = wezterm.font_with_fallback({
         "JetBrainsMono NFM",
