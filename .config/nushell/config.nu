@@ -23,3 +23,19 @@ alias windir = cd $windows_home
 alias wez = vim "$windows_home/dotfiles/.config/wezterm/wezterm.lua"
 alias ls = ls -a
 alias rg = rg --smart-case --hidden --no-heading --column
+
+def get_commits [filePath:string] {
+  # get file content
+  let strings = open $filePath | lines | str replace "!" ""
+
+  # filter git log comparing each entry to a line from the above file
+  let log = git log -n 1000 --pretty=format:"%H|%aD|%s" | lines
+  | split column "|" hash time message 
+  | where { |entry| $strings | any { |str| $entry.message =~ $str } } 
+  | upsert time { |d| $d.time | into datetime } | reverse
+
+  print $log
+
+  let hashes = $log | get hash | str join ' '
+  print $"git cherry-pick ($hashes)"
+}
