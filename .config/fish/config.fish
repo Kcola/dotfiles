@@ -3,6 +3,7 @@ eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 if status is-interactive
   zoxide init fish | source
   fish_default_key_bindings
+  alias pwsh="/usr/bin/pwsh"
   alias fd="fdfind"
   alias bat="batcat"
   alias vim="nvim"
