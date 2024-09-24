@@ -1,7 +1,6 @@
 {
   "$help": "https://aka.ms/terminal-documentation",
   "$schema": "https://aka.ms/terminal-profiles-schema",
-  "startupActions": "sp -s .3 -V ",
   "actions": [
     {
       "command": "paste",
