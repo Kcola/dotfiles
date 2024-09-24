@@ -24,6 +24,7 @@ alias wez = vim $"($windows_home)/dotfiles/.config/wezterm/wezterm.lua"
 alias ls = ls -a
 alias rg = rg --smart-case --hidden --no-heading --column
 
+
 def "git mybranches" [] {
   git branch --format='%(refname:short)' | lines | where {|$it| $it =~ kolacampbell}
 }
@@ -42,4 +43,15 @@ def get_commits [filePath:string] {
 
   let hashes = $log | get hash | str join ' '
   print $"git cherry-pick ($hashes)"
+}
+
+const session_name = "main"
+if ($env | columns | where $it == "TMUX" | length) == 1 {
+    echo $"Attached to tmux session ($session_name)"
+} else {
+    if (tmux ls | lines | where $it =~ $session_name | length) > 0 {
+        tmux attach-session -t $session_name
+    } else {
+        tmux new-session -s $session_name
+    }
 }
