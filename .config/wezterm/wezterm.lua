@@ -59,31 +59,26 @@ local mykeys = {
         mods = "CTRL",
         action = act.PasteFrom("Clipboard"),
     },
-    {
-        key = "F12",
-        action = wezterm.action_callback(function(_, pane)
-            local tab = pane:tab()
-            local panes = tab:panes_with_info()
-            if #panes == 1 then
-                pane:split({
-                    direction = "Right",
-                    size = 0.4,
-                    domain = "CurrentPaneDomain",
-                })
-            elseif not panes[1].is_zoomed then
-                panes[1].pane:activate()
-                tab:set_zoomed(true)
-            elseif panes[1].is_zoomed then
-                tab:set_zoomed(false)
-                panes[2].pane:activate()
-            end
-        end),
-    },
-    {
-        key = "T",
-        mods = "CTRL",
-        action = wezterm.action.TogglePaneZoomState,
-    },
+    -- {
+    --     key = "F12",
+    --     action = wezterm.action_callback(function(_, pane)
+    --         local tab = pane:tab()
+    --         local panes = tab:panes_with_info()
+    --         if #panes == 1 then
+    --             pane:split({
+    --                 direction = "Right",
+    --                 size = 0.4,
+    --                 domain = "CurrentPaneDomain",
+    --             })
+    --         elseif not panes[1].is_zoomed then
+    --             panes[1].pane:activate()
+    --             tab:set_zoomed(true)
+    --         elseif panes[1].is_zoomed then
+    --             tab:set_zoomed(false)
+    --             panes[2].pane:activate()
+    --         end
+    --     end),
+    -- },
     {
         key = "j",
         mods = "ALT",
@@ -104,13 +99,7 @@ local mykeys = {
         mods = "ALT",
         action = wezterm.action({ SendString = ":cprev\n" }),
     },
-    { key = "t", mods = "ALT", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
     { key = "l", mods = "ALT", action = wezterm.action.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS" }) },
-    {
-        key = "w",
-        mods = "ALT",
-        action = wezterm.action.CloseCurrentTab({ confirm = false }),
-    },
     {
         key = "=",
         mods = "CTRL",
@@ -170,14 +159,6 @@ for _, key in ipairs(mykeys) do
             action = key.action,
         })
     end
-end
-
-for i = 1, 8 do
-    table.insert(mykeys, {
-        key = tostring(i),
-        mods = "ALT",
-        action = act.ActivateTab(i - 1),
-    })
 end
 
 --concat lua table
@@ -296,7 +277,7 @@ return {
         },
     },
     keys = mykeys,
-    tab_bar_at_bottom = true,
+    tab_bar_at_bottom = false,
     use_fancy_tab_bar = false,
     enable_tab_bar = true,
     tab_max_width = 100,
