@@ -26,6 +26,23 @@ function Get-GitWorktree {
   }
 }
 
+function find-commits([string]$file_path) {
+    $commits = @()
+
+    $file_content = Get-Content -Path $file_path
+
+    $logs = & git log -n 2000 --pretty=format:"%H %ct %s"
+
+    foreach ($search_string in $file_content) {
+        $commits += $logs | Where-Object { $_ -match $search_string }
+    }
+
+    # sort commits by commit time
+    $commits = $commits | Sort-Object { [int]($_ -split ' ')[1] }
+
+    echo $commits
+}
+
 New-Alias -Name gw -Value Get-GitWorktree
 New-Alias -Name gw-clean -Value Get-GitWorktree
 
@@ -57,5 +74,5 @@ function start-cdb{
  & 'C:\Program Files\Azure Cosmos DB Emulator\CosmosDB.Emulator.exe' /port=11000 /NoExplorer
 }
 
-fnm env --use-on-cd | Out-String | Invoke-Expression
+fnm env --use-on-cd | Out-String | Invoke-Expression | Out-Null
 
