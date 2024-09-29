@@ -1,3 +1,4 @@
+
 $env.config = {
     show_banner: false
     hooks: {
@@ -55,3 +56,6 @@ if ($env | columns | where $it == "TMUX" | length) == 1 {
         tmux new-session -s $session_name
     }
 }
+
+source ~/.config/nushell/catpuccin_mocha.nu
+$env.LS_COLORS = ((cat ~/.config/nushell/ls-colors) | str trim)

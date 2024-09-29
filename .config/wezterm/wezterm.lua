@@ -171,13 +171,13 @@ end
 
 local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
 
-local TAB_BAR_BG = "#1e1e1e"
-local ACTIVE_TAB_BG = "#608B4E"
-local ACTIVE_TAB_FG = "White"
-local HOVER_TAB_BG = "White"
-local HOVER_TAB_FG = "Black"
-local NORMAL_TAB_BG = "White"
-local NORMAL_TAB_FG = "Black"
+local TAB_BAR_BG = "#1e1e2e" -- Mocha base
+local ACTIVE_TAB_BG = "#89b4fa" -- Mocha green
+local ACTIVE_TAB_FG = "#1e1e2e" -- Mocha base (dark text)
+local HOVER_TAB_BG = "#cdd6f4" -- Mocha text
+local HOVER_TAB_FG = "#1e1e2e" -- Mocha base
+local NORMAL_TAB_BG = "#1e1e2e" -- Mocha base
+local NORMAL_TAB_FG = "#cdd6f4" -- Mocha text
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
     local background = NORMAL_TAB_BG
@@ -262,7 +262,7 @@ return {
     },
     -- default_prog = is_windows and { "pwsh" } or nil,
     default_domain = is_windows and "WSL:Ubuntu" or nil,
-    color_scheme = "VSCodeDark+ (Gogh)",
+    color_scheme = "Catppuccin Mocha",
     font = wezterm.font_with_fallback({
         "JetBrainsMono NFM",
         "JetBrainsMono NF",
