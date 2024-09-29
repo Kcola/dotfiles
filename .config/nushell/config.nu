@@ -46,16 +46,16 @@ def get_commits [filePath:string] {
   print $"git cherry-pick ($hashes)"
 }
 
-const session_name = "main"
-if ($env | columns | where $it == "TMUX" | length) == 1 {
-    echo $"Attached to tmux session ($session_name)"
-} else {
-    if (tmux ls | lines | where $it =~ $session_name | length) > 0 {
-        tmux attach-session -t $session_name
-    } else {
-        tmux new-session -s $session_name
-    }
-}
+# const session_name = "main"
+# if ($env | columns | where $it == "TMUX" | length) == 1 {
+#     echo $"Attached to tmux session ($session_name)"
+# } else {
+#     if (tmux ls | lines | where $it =~ $session_name | length) > 0 {
+#         tmux attach-session -t $session_name
+#     } else {
+#         tmux new-session -s $session_name
+#     }
+# }
 
 source ~/.config/nushell/catpuccin_mocha.nu
 $env.LS_COLORS = ((cat ~/.config/nushell/ls-colors) | str trim)
