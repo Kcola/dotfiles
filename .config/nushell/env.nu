@@ -3,6 +3,7 @@
 # version = "0.97.1"
 
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin')
+$env.PATH = ($env.PATH | split row (char esep) | prepend '~/.cargo/bin/')
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
 zoxide init nushell | save -f ~/.zoxide.nu
