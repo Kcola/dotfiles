@@ -143,6 +143,11 @@ local mykeys = {
         action = wezterm.action.DecreaseFontSize,
     },
     {
+        key = "n",
+        mods = "CTRL",
+        action = wezterm.action.ToggleFullScreen,
+    },
+    {
         key = "0",
         mods = "CTRL",
         action = wezterm.action("ResetFontSize"),
@@ -305,7 +310,7 @@ return {
         "JetBrainsMono NF",
         "FiraCode Nerd Font",
     }),
-    font_size = is_windows and 12 or 14.0,
+    font_size = is_windows and 12 or 15.0,
     mouse_bindings = {
         {
             event = { Down = { streak = 1, button = "Right" } },

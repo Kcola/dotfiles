@@ -1,4 +1,3 @@
-
 $env.config = {
     show_banner: false
     hooks: {
@@ -15,8 +14,6 @@ $env.config = {
 let windows_home = $env.DIRS_LIST.0
 use ~/.cache/starship/init.nu
 source ~/.zoxide.nu
-alias fd = fdfind
-alias bat = batcat
 alias vim = nvim
 alias gw = git worktree
 alias oldvim = vim
