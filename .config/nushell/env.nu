@@ -4,6 +4,8 @@
 
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin')
 $env.PATH = ($env.PATH | split row (char esep) | prepend '~/.cargo/bin/')
+$env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin')
+$env.PATH = ($env.PATH | split row (char esep) | prepend '/usr/local/bin/')
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
 zoxide init nushell | save -f ~/.zoxide.nu
