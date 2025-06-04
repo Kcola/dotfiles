@@ -1,0 +1,39 @@
+[
+  {
+    "bindings": {
+      "ctrl-p": "file_finder::Toggle",
+      "ctrl-b": "file_finder::Toggle",
+      "ctrl-enter": "editor::AcceptEditPrediction",
+      "cmd-,": "zed::OpenKeymap",
+      "f12": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-t": "workspace::NewTerminal"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "r": "project_panel::Rename",
+      "x": "project_panel::Cut",
+      "y": "project_panel::Copy",
+      "p": "project_panel::Paste",
+      "d": "project_panel::Delete",
+      "a": "project_panel::NewFile"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "shift-k": "editor::Hover",
+      "g d": "editor::GoToDefinition",
+      "g I": "editor::GoToImplementation",
+      "g r": "editor::FindAllReferences",
+      "space r n": "editor::Rename",
+      "space t": "workspace::ToggleLeftDock"
+    }
+  }
+]

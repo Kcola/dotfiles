@@ -56,3 +56,4 @@ def get_commits [filePath:string] {
 
 source ~/.config/nushell/catpuccin_mocha.nu
 $env.LS_COLORS = ((cat ~/.config/nushell/ls-colors) | str trim)
+source $"($nu.home-path)/.cargo/env.nu"
