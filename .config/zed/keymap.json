@@ -33,7 +33,11 @@
       "g I": "editor::GoToImplementation",
       "g r": "editor::FindAllReferences",
       "space r n": "editor::Rename",
-      "space t": "workspace::ToggleLeftDock"
+      "space t": "workspace::ToggleLeftDock",
+      "space f f": [
+        "task::Spawn",
+        { "task_name": "live_grep", "reveal_target": "center" }
+      ]
     }
   }
 ]
