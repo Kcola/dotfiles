@@ -1,5 +1,4 @@
-local wezterm = require("wezterm")
-local act = wezterm.action
+local wezterm = require("wezterm") local act = wezterm.action
 
 local is_windows = wezterm.target_triple:find("windows") ~= nil
 

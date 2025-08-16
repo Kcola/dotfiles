@@ -1,4 +1,7 @@
 {
+  "tab_bar": {
+    "show": false
+  },
   "edit_predictions": {
     "mode": "eager",
     "copilot": {
