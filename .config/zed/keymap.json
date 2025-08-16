@@ -15,6 +15,15 @@
     }
   },
   {
+    "context": "GitPanel && ChangesList",
+    "bindings": {
+      "s": "git::ToggleStaged",
+      "c c": "git::Commit",
+      "space t": "workspace::ToggleLeftDock",
+      "x": ["git::RestoreFile", { "skip_prompt": false }]
+    }
+  },
+  {
     "context": "ProjectPanel && not_editing",
     "bindings": {
       "r": "project_panel::Rename",
@@ -22,7 +31,8 @@
       "y": "project_panel::Copy",
       "p": "project_panel::Paste",
       "d": "project_panel::Delete",
-      "a": "project_panel::NewFile"
+      "a": "project_panel::NewFile",
+      "space t": "workspace::ToggleLeftDock"
     }
   },
   {
@@ -32,6 +42,7 @@
       "g d": "editor::GoToDefinition",
       "g I": "editor::GoToImplementation",
       "g r": "editor::FindAllReferences",
+      "g s": "git_panel::FocusChanges",
       "space r n": "editor::Rename",
       "space t": "workspace::ToggleLeftDock",
       "space f f": [
