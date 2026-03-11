@@ -27,3 +27,8 @@ if not (which fnm | is-empty) {
   }
   path add $node_path
 }
+
+# pnpm
+$env.PNPM_HOME = "/Users/kolacampbell/Library/pnpm"
+$env.PATH = ($env.PATH | split row (char esep) | prepend $env.PNPM_HOME )
+# pnpm end
