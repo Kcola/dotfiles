@@ -2,8 +2,6 @@
 #
 # version = "0.97.1"
 
-use ./secrets.nu
-
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin')
 $env.PATH = ($env.PATH | split row (char esep) | prepend '~/.cargo/bin/')
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin')
