@@ -30,3 +30,6 @@ if not (which fnm | is-empty) {
 $env.PNPM_HOME = "/Users/kolacampbell/Library/pnpm"
 $env.PATH = ($env.PATH | split row (char esep) | prepend $env.PNPM_HOME )
 # pnpm end
+
+# Source private env vars (not tracked by yadm)
+source ~/.config/nushell/env.private.nu
