@@ -1,0 +1,3 @@
+.config/nushell/env.private.nu
+.config/nushell/config.private.nu
+.config/nushell/secrets.nu

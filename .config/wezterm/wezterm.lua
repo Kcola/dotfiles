@@ -163,6 +163,11 @@ local mykeys = {
     },
     {
         key = "Enter",
+        mods = "SHIFT",
+        action = act.SendString("\n"),
+    },
+    {
+        key = "Enter",
         mods = "ALT",
         action = wezterm.action({ SendString = " qf" }),
     },
