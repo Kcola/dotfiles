@@ -27,7 +27,11 @@ if not (which fnm | is-empty) {
 }
 
 # pnpm
-$env.PNPM_HOME = "/Users/kolacampbell/Library/pnpm"
+$env.PNPM_HOME = if (sys host | get name) == "Darwin" {
+  "/Users/kolacampbell/Library/pnpm"
+} else {
+  $"($env.HOME)/.local/share/pnpm"
+}
 $env.PATH = ($env.PATH | split row (char esep) | prepend $env.PNPM_HOME )
 # pnpm end
 
