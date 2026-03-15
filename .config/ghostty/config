@@ -1,0 +1,87 @@
+# Ghostty config — translated from WezTerm
+# ==========================================
+
+# Theme
+theme = Catppuccin Mocha
+
+# Font (fallback order matches WezTerm config)
+font-family = JetBrainsMono NFM
+font-family = JetBrainsMono NF
+font-family = FiraCode Nerd Font Mono
+font-size = 15
+
+# Window
+window-padding-x = 2
+window-padding-y = 2
+window-save-state = always
+maximize = true
+
+# macOS titlebar with integrated tabs
+macos-titlebar-style = tabs
+
+# Preserve zoom state when navigating between splits (prevents goto_split
+# from unzooming, which would break the F12 toggle chain)
+split-preserve-zoom = navigation
+
+# ─── Keybindings ───────────────────────────────────────────────────────
+
+# Pane navigation (Ctrl+H/J/K/L)
+# NOTE: WezTerm config had vim-aware navigation that checked if nvim was
+# the foreground process and passed keys through. Ghostty doesn't support
+# this natively. For vim-aware splits, use a Neovim plugin like
+# smart-splits.nvim (has Ghostty support) and remove these four bindings.
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+
+# Paste
+keybind = ctrl+v=paste_from_clipboard
+
+# Copy if selection exists, otherwise pass through as Ctrl+C (SIGINT)
+keybind = performable:ctrl+c=copy_to_clipboard
+
+# Font size
+keybind = ctrl+equal=increase_font_size:1
+keybind = ctrl+minus=decrease_font_size:1
+keybind = ctrl+zero=reset_font_size
+
+# Fullscreen
+keybind = ctrl+n=toggle_fullscreen
+
+# F12: zoom/unzoom the current split (make sure left pane is focused first)
+keybind = f12=toggle_split_zoom
+
+# Shift+F12: create the initial right split at ~60/40 ratio
+# (Creates split, moves focus back to the left pane, then grows it by 200px.
+#  Adjust the 200 value if needed for your display. After creation, use F12
+#  to toggle.)
+keybind = shift+f12=new_split:right
+keybind = chain=goto_split:left
+keybind = chain=resize_split:right,200
+
+# ─── Vim/Neovim text-sending keybinds (ALT) ───────────────────────────
+
+keybind = alt+j=text: J
+keybind = alt+comma=text: vrc
+keybind = alt+slash=text:gc
+keybind = alt+enter=text: qf
+keybind = alt+h=text: history
+keybind = alt+right=text::cnext\n
+keybind = alt+left=text::cprev\n
+
+# Ctrl+Enter → send " cp"
+keybind = ctrl+enter=text: cp
+
+# Shift+Enter → send literal newline
+keybind = shift+enter=text:\n
+
+# ─── macOS CMD equivalents of ALT bindings ─────────────────────────────
+
+keybind = super+j=text: J
+keybind = super+comma=text: vrc
+keybind = super+slash=text:gc
+keybind = super+enter=text: qf
+keybind = super+h=text: history
+keybind = super+right=text::cnext\n
+keybind = super+left=text::cprev\n
