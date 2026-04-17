@@ -2,3 +2,4 @@
 .config/nushell/env.private.nu
 .DS_Store
 .playwright-cli/
+.claude/skills/playwright-cli/
