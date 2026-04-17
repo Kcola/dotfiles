@@ -1,3 +1,4 @@
 .zed
 .config/nushell/env.private.nu
 .DS_Store
+.playwright-cli/
