@@ -37,3 +37,6 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend $env.PNPM_HOME )
 
 # Source private env vars (not tracked by yadm)
 source ~/.config/nushell/env.private.nu
+
+# Default browser (use wslview to open URLs in Windows default browser)
+$env.BROWSER = "wslview"
